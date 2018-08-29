@@ -83,7 +83,7 @@ namespace TcmpWebForm
         {
             try
             {
-                Session["User"] = null;
+                Session.Clear();
                 Response.Redirect($"{SharedLogic.LOGIN_PAGE}?Msg={SharedLogic.SUCCESSFULL_LOGOUT_MSG}");
             }
             catch (Exception ex)

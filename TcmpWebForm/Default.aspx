@@ -72,7 +72,7 @@
                             </div>
                         </div>
                         <div class="row text-center">
-                            <asp:Button ID="btnCancelError" runat="server" Text="Cancel" Width="200px" CssClass="btn btn-danger btn-md" OnClick="btnCancel_Click" />
+                            <asp:Button ID="btnCancelError" runat="server" Text="Cancel" Width="200px" CssClass="btn btn-danger btn-md  padded-button" OnClick="btnCancel_Click" />
                         </div>
                     </asp:View>
 
@@ -151,7 +151,7 @@
                                         <th scope="row"><%Response.Write(item.ItemCode); %></th>
                                         <td><%Response.Write(item.ItemName); %></td>
                                         <td><%Response.Write(item.ItemPrice); %></td>
-                                        <td><a class="btn btn-default btn-md" href="Default.aspx?ItemID=<% Response.Write(item.ItemCode); %>&Op=Remove">Remove </a></td>
+                                        <td><a class="btn btn-default btn-md  padded-button" href="Default.aspx?ItemID=<% Response.Write(item.ItemCode); %>&Op=Remove">Remove </a></td>
                                     </tr>
                                     <% } %>
                                     <tr>
@@ -166,9 +166,9 @@
 
                         <div class="row">
                             <div class="text-center">
-                                <asp:Button ID="btnCancel" runat="server" Text="Cancel" Width="200px" CssClass="btn btn-danger btn-md"
+                                <asp:Button ID="btnCancel" runat="server" Text="Cancel" Width="200px" CssClass="btn btn-danger btn-md  padded-button"
                                     OnClick="btnCancel_Click" />
-                                <asp:Button ID="btnCompleteCheckOut" runat="server" Text="Pay Now" Width="200px" CssClass="btn btn-success btn-md"
+                                <asp:Button ID="btnCompleteCheckOut" runat="server" Text="Pay Now" Width="200px" CssClass="btn btn-success btn-md padded-button"
                                     OnClick="btnCompleteCheckout_Click" />
                             </div>
                         </div>
@@ -270,9 +270,9 @@
                             <hr />
                             <div class="row">
                                 <div class="text-center">
-                                    <asp:Button ID="btnCancelLogin" runat="server" Text="Cancel" Width="200px" CssClass="btn btn-danger btn-md"
+                                    <asp:Button ID="btnCancelLogin" runat="server" Text="Cancel" Width="200px" CssClass="btn btn-danger btn-md  padded-button"
                                         OnClick="btnCancel_Click" />
-                                    <asp:Button ID="btnLogin" runat="server" Text="Login" Width="200px" CssClass="btn btn-success btn-md"
+                                    <asp:Button ID="btnLogin" runat="server" Text="Login" Width="200px" CssClass="btn btn-success btn-md  padded-button"
                                         OnClick="btnLogin_Click" />
                                 </div>
                             </div>
@@ -350,9 +350,9 @@
 
                             <div class="row">
                                 <div class="text-center">
-                                    <asp:Button ID="btnCancelRegisteration" runat="server" Text="Cancel" Width="200px" CssClass="btn btn-danger btn-md"
+                                    <asp:Button ID="btnCancelRegisteration" runat="server" Text="Cancel" Width="200px" CssClass="btn btn-danger btn-md  padded-button"
                                         OnClick="btnCancel_Click" />
-                                    <asp:Button ID="btnRegisterSystemUser" runat="server" Text="Regsister User" Width="200px" CssClass="btn btn-success btn-md"
+                                    <asp:Button ID="btnRegisterSystemUser" runat="server" Text="Regsister User" Width="200px" CssClass="btn btn-success btn-md  padded-button"
                                         OnClick="btnRegisterSystemUser_Click" />
                                 </div>
                             </div>

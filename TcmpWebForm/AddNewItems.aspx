@@ -96,7 +96,7 @@
                                 <hr />
                                 <div class="row">
                                     <div class="text-center">
-                                        <asp:Button ID="btnRegisterItem" runat="server" Text="Save Item" Width="200px" CssClass="btn btn-success btn-md"
+                                        <asp:Button ID="btnRegisterItem" runat="server" Text="Save Item" Width="200px" CssClass="btn btn-success btn-md  padded-button"
                                             OnClick="btnRegisterItem_Click" />
                                     </div>
                                 </div>
