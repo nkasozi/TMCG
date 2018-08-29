@@ -48,7 +48,7 @@ namespace TcmpTestCore
             try
             {
                 //pick all items that are in stock ie. count>0
-                Item[] items = Item.FindAll().Where(i => i.ItemCount > 0).ToArray();
+                Item[] items = Item.QueryWithStoredProc("GetAllItems").ToArray();
 
                 //populate response
                 all.AddRange(items);
@@ -81,13 +81,13 @@ namespace TcmpTestCore
 
         private static object[] GetSalesById(string ID)
         {
-            Sale[] sales = Sale.FindAll().Where(i => i.SaleID == ID).ToArray();
+            Sale[] sales = Sale.QueryWithStoredProc("GetSaleByID",ID).ToArray();
             foreach (var sale in sales)
             {
-                SaleItem[] saleItems = SaleItem.FindAll().Where(i => i.SaleId == ID).ToArray();
+                SaleItem[] saleItems = SaleItem.QueryWithStoredProc("GetSaleItemsBySaleID", sale.Id).ToArray();
                 foreach (var saleItem in saleItems)
                 {
-                    Item item = Item.FindAll().Where(i => i.ItemCode == saleItem.ItemId).FirstOrDefault();
+                    Item item = Item.QueryWithStoredProc("GetItemByID", saleItem.ItemId).FirstOrDefault();
                     sale.TotalCost += item != null ? item.ItemPrice : 0;
                 }
             }
@@ -96,13 +96,13 @@ namespace TcmpTestCore
 
         private static object[] GetSales()
         {
-            Sale[] sales = Sale.FindAll().ToArray();
+            Sale[] sales = Sale.QueryWithStoredProc("GetAllSales").ToArray();
             foreach (var sale in sales)
             {
-                SaleItem[] saleItems = SaleItem.FindAll().Where(i => i.SaleId == sale.SaleID).ToArray();
+                SaleItem[] saleItems = SaleItem.QueryWithStoredProc("GetSaleItemsBySaleID",sale.Id).ToArray();
                 foreach (var saleItem in saleItems)
                 {
-                    Item item = Item.FindAll().Where(i => i.ItemCode == saleItem.ItemId).FirstOrDefault();
+                    Item item = Item.QueryWithStoredProc("GetItemByID",saleItem.ItemId).FirstOrDefault();
                     sale.TotalCost += item != null ? item.ItemPrice : 0;
                 }
             }
@@ -180,7 +180,7 @@ namespace TcmpTestCore
                 }
 
                 //find the first user whose username is the one supplied
-                SystemUser user = SystemUser.FindAll().Where(i => i.Username == Username).FirstOrDefault();
+                SystemUser user = SystemUser.QueryWithStoredProc("GetSystemUserByID",Username).FirstOrDefault();
 
                 //oops no user found..stop
                 if (user == null)
@@ -254,7 +254,7 @@ namespace TcmpTestCore
                     return result;
                 }
 
-                Customer old = Customer.FindAll().Where(i => i.CustomerID == cust.CustomerID).FirstOrDefault();
+                Customer old = Customer.QueryWithStoredProc("GetCustomerByID",cust.CustomerID).FirstOrDefault();
                 cust.Id = old != null ? old.Id : cust.Id;
 
                 cust.Save();
@@ -282,10 +282,10 @@ namespace TcmpTestCore
                     return result;
                 }
 
-                Item old = Item.FindAll().Where(i => i.ItemCode == item.ItemCode).FirstOrDefault();
+                Item old = Item.QueryWithStoredProc("GetItemByID",item.ItemCode).FirstOrDefault();
                 item.Id = old != null ? old.Id : item.Id;
 
-                item.Save();
+                item.SaveWithStoredProc("SaveItem",item.ItemCode,item.ItemName,item.ItemPrice,item.ItemImage,item.ItemCount,item.ModifiedBy);
 
                 result.StatusCode = SharedCommonsGlobals.SUCCESS_STATUS_CODE;
                 result.StatusDesc = SharedCommonsGlobals.SUCCESS_STATUS_TEXT;
@@ -368,7 +368,7 @@ namespace TcmpTestCore
                     return result;
                 }
 
-                Sale old = Sale.FindAll().Where(i => i.SaleID == sale.SaleID).FirstOrDefault();
+                Sale old = Sale.QueryWithStoredProc("GetSaleID",sale.SaleID).FirstOrDefault();
 
                 sale.Id = old != null ? old.Id : sale.Id;
 
@@ -402,7 +402,7 @@ namespace TcmpTestCore
 
                 foreach (var item in saleItems)
                 {
-                    SaleItem old = SaleItem.FindAll().Where(i => (i.SaleId == item.SaleId && i.ItemId == item.ItemId)).FirstOrDefault();
+                    SaleItem old = SaleItem.QueryWithStoredProc("GetSaleItemByID",item.SaleId,item.ItemId).FirstOrDefault();
                     item.Id = old != null ? old.Id : item.Id;
 
                     item.Save();
@@ -434,7 +434,7 @@ namespace TcmpTestCore
                 }
 
                 //check among the existing users for someone with the same username
-                SystemUser old = SystemUser.FindAll()?.Where(i => i?.Username?.ToUpper() == user?.Username?.ToUpper())?.FirstOrDefault();
+                SystemUser old = SystemUser.QueryWithStoredProc("GetSystemUserByID",user.Username).FirstOrDefault();
 
                 //a current user has been found with the same username
                 if (old != null)
@@ -511,7 +511,7 @@ namespace TcmpTestCore
                                                                         typeof(Customer)
                                                                      };
 
-                DbResult dbresult = DbInitializer.CreateDbIfNotExistsAndUpdateSchema();
+                DbResult dbresult = DbInitializer.Initialize();
 
                 //db setup failed
                 if (dbresult.StatusCode != SharedCommonsGlobals.SUCCESS_STATUS_CODE)

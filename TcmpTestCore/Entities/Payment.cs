@@ -9,11 +9,11 @@ using System.Threading.Tasks;
 namespace TcmpTestCore
 {
     [ActiveRecord("Payments")]
-    public class Payment:DbEntity<Payment>
+    public class Payment : DbEntity<Payment>
     {
         [PrimaryKey(PrimaryKeyType.Identity, "RecordId")]
         public int Id { get; set; }
-        
+
         [Property(Length = 50)]
         public string PaymentId { get; set; }
 
@@ -24,7 +24,7 @@ namespace TcmpTestCore
         public string PaymentType { get; set; }
 
         [Property(Length = 50)]
-        public string PaymerName { get; set; }
+        public string PayerName { get; set; }
 
         [Property(Length = 50)]
         public string PaymentNarration { get; set; }
@@ -55,7 +55,7 @@ namespace TcmpTestCore
                 return false;
             }
 
-            Payment duplicatePayment = FindAll().Where(i => i.PaymentId?.ToUpper() == this.PaymentId?.ToUpper()).FirstOrDefault();
+            Payment duplicatePayment = Payment.QueryWithStoredProc("GetPaymentByPaymentSystemCodeAndID", PaymentId, PaymentSystemCode).FirstOrDefault();
 
             if (duplicatePayment != null)
             {
@@ -63,6 +63,35 @@ namespace TcmpTestCore
                 StatusDesc = SharedCommonsGlobals.SUCCESS_STATUS_TEXT;
                 return false;
             }
+
+            PaymentSystem system = PaymentSystem.QueryWithStoredProc("GetPaymentSystemByID", PaymentSystemCode).FirstOrDefault();
+
+            if (system == null)
+            {
+                StatusCode = SharedCommonsGlobals.FAILURE_STATUS_CODE;
+                StatusDesc = "INVALID PAYMENT SYSTEM CODE OR PASSWORD";
+                return false;
+            }
+
+            string hashedPassword = SharedCommons.GenearetHMACSha256Hash(system.SecretKey, Password);
+
+            if (hashedPassword != system.Password)
+            {
+                StatusCode = SharedCommonsGlobals.FAILURE_STATUS_CODE;
+                StatusDesc = "INVALID PAYMENT SYSTEM CODE OR PASSWORD";
+                return false;
+            }
+
+            string dataToSign = PaymentSystemCode + Password + PaymentAmount + PaymentId + PaymentChannel + PayerContact + PayerName;
+            string hmacHash = SharedCommons.GenearetHMACSha256Hash(system.SecretKey, dataToSign);
+
+            if (DigitalSignature != hmacHash)
+            {
+                StatusCode = SharedCommonsGlobals.FAILURE_STATUS_CODE;
+                StatusDesc = "INVALID DIGITAL SIGNATURE";
+                return false;
+            }
+
             return base.IsValid();
         }
     }

@@ -26,13 +26,16 @@ Tools/Frameworks used
 * MSTest for Unit Testing
 * SQL Server 2017 for Database
 * Castle Active Record used as ORM
+* Chart JS is used for Graphs
 
 Software Architecture Overview
 -----------------------
 
 * All the core logic is contained in a library 
-* Website and WebAPI just display and collect data from end user, library does the validations, transformations etc
+* Website and WebAPI just display and collect data from end user, library does the validations, transformations, storage etc
 * A Rest API is used for System to System notifications e.g the Bank notifying us of a deposit made on the account at the bank
+* For a bank to use this API, they need to be created in the system and assigned a username,Password, SecretKey (which is used when they generating digital signatures)
+* Hmac Sha256 is used to generate this digital signature
 * PayWeb (A Pegasus Card processing Gateway) is used as the Card Processor
 
 

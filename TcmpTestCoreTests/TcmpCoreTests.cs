@@ -65,7 +65,7 @@ namespace TcmpTestCore.Tests
                 PaymentNarration = "Test Payment",
                 PaymentSystemCode = "SBU",
                 PaymentType = "CASH",
-                PaymerName = "Nsubuga Kasozi"
+                PayerName = "Nsubuga Kasozi"
             };
 
             TcmpCore core = new TcmpCore();
@@ -86,7 +86,7 @@ namespace TcmpTestCore.Tests
                 PaymentNarration = "Test Payment",
                 PaymentSystemCode = "SBU",
                 PaymentType = "CASH",
-                PaymerName = "Nsubuga Kasozi"
+                PayerName = "Nsubuga Kasozi"
             };
 
             TcmpCore core = new TcmpCore();

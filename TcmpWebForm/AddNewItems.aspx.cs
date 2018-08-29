@@ -141,13 +141,13 @@ namespace TcmpWebForm
             string fileExtension = Path.GetExtension(fuItemImage.PostedFile.FileName);
             string[] allowedExtensions = { ".png", ".jpg", ".jpeg", ".bitmap" };
 
-            if (!allowedExtensions.Contains(fileExtension))
+            if (!allowedExtensions.Contains(fileExtension.ToLower()))
             {
                 throw new Exception($"Invalid File Format [{fileExtension}] Uploaded. Please Upload an Image");
             }
 
-            System.IO.Stream fs = fuItemImage.PostedFile.InputStream;
-            System.IO.BinaryReader br = new System.IO.BinaryReader(fs);
+            Stream fs = fuItemImage.PostedFile.InputStream;
+            BinaryReader br = new BinaryReader(fs);
             Byte[] bytes = br.ReadBytes((Int32)fs.Length);
             base64String = Convert.ToBase64String(bytes, 0, bytes.Length);
             base64String = $"data:image/{fileExtension.Trim('.')};base64," + base64String;

@@ -52,6 +52,20 @@ namespace TcmpTestCore
                 return false;
             }
 
+            if (!string.IsNullOrEmpty(Email) && !SharedCommons.IsValidEmail(Email))
+            {
+                StatusCode = SharedCommonsGlobals.FAILURE_STATUS_CODE;
+                StatusDesc = "Please Supply an valid Email Address";
+                return false;
+            }
+
+            if (!string.IsNullOrEmpty(Phone) && !SharedCommons.IsValidUgPhoneNumber(Phone))
+            {
+                StatusCode = SharedCommonsGlobals.FAILURE_STATUS_CODE;
+                StatusDesc = "Please Supply an valid Phone";
+                return false;
+            }
+
             return base.IsValid();
         }
     }
