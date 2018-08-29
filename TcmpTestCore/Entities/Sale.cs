@@ -18,7 +18,7 @@ namespace TcmpTestCore
         public string SaleID { get; set; }
 
         [Property(Length = 50)]
-        public string UserId { get; set; }
+        public string CustomerId { get; set; }
 
         [Property]
         public int Tax { get; set; }

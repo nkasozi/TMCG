@@ -53,3 +53,4 @@ E:\TCMP\TcmpTest\TcmpTestCore\bin\Debug\sv\Castle.Components.Validator.resources
 E:\TCMP\TcmpTest\TcmpTestCore\obj\Debug\TcmpTestCore.csproj.CopyComplete
 E:\TCMP\TcmpTest\TcmpTestCore\obj\Debug\TcmpTestCore.dll
 E:\TCMP\TcmpTest\TcmpTestCore\obj\Debug\TcmpTestCore.pdb
+E:\TCMP\TcmpTest\TcmpTestCore\bin\Debug\SharedCommons.pdb

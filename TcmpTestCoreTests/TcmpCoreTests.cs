@@ -124,7 +124,7 @@ namespace TcmpTestCore.Tests
             Sale sale = new Sale
             {
                 SaleID = SharedCommons.GenerateUniqueId("SALE-"),
-                UserId = "Nsubugak",
+                CustomerId = "Nsubugak",
                 TotalCost = 0,
                 Tax = 0
             };

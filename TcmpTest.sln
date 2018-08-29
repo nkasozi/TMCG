@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27703.2042
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TcmpWebApi", "TcmpWebApi\TcmpWebApi.csproj", "{BDAE8B18-D7A2-4BD0-A99E-A0845EF0E897}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TcmpTestCore", "TcmpTestCore\TcmpTestCore.csproj", "{69123B8F-1FAD-402D-8225-D447DDC65D6C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TcmpTestCoreTests", "TcmpTestCoreTests\TcmpTestCoreTests.csproj", "{38C2A0DC-B714-4935-9A7D-C5270A97283F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TcmpWebForm", "TcmpWebForm\TcmpWebForm.csproj", "{2ED877A3-AB6D-4EB1-B0A7-98CAF8444198}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,10 +15,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{BDAE8B18-D7A2-4BD0-A99E-A0845EF0E897}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BDAE8B18-D7A2-4BD0-A99E-A0845EF0E897}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BDAE8B18-D7A2-4BD0-A99E-A0845EF0E897}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BDAE8B18-D7A2-4BD0-A99E-A0845EF0E897}.Release|Any CPU.Build.0 = Release|Any CPU
 		{69123B8F-1FAD-402D-8225-D447DDC65D6C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{69123B8F-1FAD-402D-8225-D447DDC65D6C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{69123B8F-1FAD-402D-8225-D447DDC65D6C}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -27,6 +23,10 @@ Global
 		{38C2A0DC-B714-4935-9A7D-C5270A97283F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{38C2A0DC-B714-4935-9A7D-C5270A97283F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{38C2A0DC-B714-4935-9A7D-C5270A97283F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2ED877A3-AB6D-4EB1-B0A7-98CAF8444198}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2ED877A3-AB6D-4EB1-B0A7-98CAF8444198}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2ED877A3-AB6D-4EB1-B0A7-98CAF8444198}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2ED877A3-AB6D-4EB1-B0A7-98CAF8444198}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
