@@ -55,6 +55,14 @@ namespace TcmpTestCore
                 return false;
             }
 
+            Payment duplicatePayment = FindAll().Where(i => i.PaymentId?.ToUpper() == this.PaymentId?.ToUpper()).FirstOrDefault();
+
+            if (duplicatePayment != null)
+            {
+                StatusCode = SharedCommonsGlobals.SUCCESS_STATUS_CODE;
+                StatusDesc = SharedCommonsGlobals.SUCCESS_STATUS_TEXT;
+                return false;
+            }
             return base.IsValid();
         }
     }

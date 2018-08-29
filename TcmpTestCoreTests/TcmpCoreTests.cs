@@ -36,7 +36,7 @@ namespace TcmpTestCore.Tests
         }
 
         [TestMethod()]
-        public void RegisterSystemUserTest()
+        public void RegisterSystemUserTest_ValidInput_ExpectSuccess()
         {
             TcmpCore core = new TcmpCore();
             SystemUser systemUser = new SystemUser
@@ -53,7 +53,7 @@ namespace TcmpTestCore.Tests
         }
 
         [TestMethod()]
-        public void PayForTransactionTest()
+        public void PayForTransactionTest_ValidInput_ExpectSuccess()
         {
             Payment payment = new Payment
             {
@@ -74,7 +74,29 @@ namespace TcmpTestCore.Tests
         }
 
         [TestMethod()]
-        public void RegisterItemTest()
+        public void PayForTransactionTest_DuplicatePayment_ExpectSuccess()
+        {
+            Payment payment = new Payment
+            {
+                DigitalSignature = SharedCommons.GenerateRandomString(),
+                Password = "T3rr1613",
+                PayerContact = "0794132389",
+                PaymentChannel = "BANK",
+                PaymentId = "1325621",
+                PaymentNarration = "Test Payment",
+                PaymentSystemCode = "SBU",
+                PaymentType = "CASH",
+                PaymerName = "Nsubuga Kasozi"
+            };
+
+            TcmpCore core = new TcmpCore();
+            Result result = core.PayForTransaction(payment);
+            result = core.PayForTransaction(payment);
+            Assert.AreEqual(result.StatusDesc, SharedCommonsGlobals.SUCCESS_STATUS_TEXT);
+        }
+
+        [TestMethod()]
+        public void RegisterItemTest_ValidInput_ExpectSuccess()
         {
             Item item = new Item
             {
@@ -92,7 +114,7 @@ namespace TcmpTestCore.Tests
         }
 
         [TestMethod()]
-        public void RegisterPaymentSystemTest()
+        public void RegisterPaymentSystemTest_ValidInput_ExpectSuccess()
         {
             PaymentSystem system = new PaymentSystem
             {
@@ -106,7 +128,7 @@ namespace TcmpTestCore.Tests
         }
 
         [TestMethod()]
-        public void RegisterPaymentTypeTest()
+        public void RegisterPaymentTypeTest_ValidInput_ExpectSuccess()
         {
             PaymentType type = new PaymentType
             {
@@ -119,7 +141,7 @@ namespace TcmpTestCore.Tests
         }
 
         [TestMethod()]
-        public void RegisterSaleTest()
+        public void RegisterSaleTest_ValidInput_ExpectSuccess()
         {
             Sale sale = new Sale
             {
@@ -134,7 +156,7 @@ namespace TcmpTestCore.Tests
         }
 
         [TestMethod()]
-        public void RegisterSaleItemsTest()
+        public void RegisterSaleItemsTest_ValidInput_ExpectSuccess()
         {
             SaleItem item = new SaleItem
             {
@@ -149,7 +171,7 @@ namespace TcmpTestCore.Tests
 
 
         [TestMethod()]
-        public void RegisterUserRoleTest()
+        public void RegisterUserRoleTest_ValidInput_ExpectSuccess()
         {
             UserRole role = new UserRole
             {
@@ -162,7 +184,7 @@ namespace TcmpTestCore.Tests
         }
 
         [TestMethod()]
-        public void SetUpDatabaseTest()
+        public void SetUpDatabaseTest_ValidInput_ExpectSuccess()
         {
             TcmpCore core = new TcmpCore();
             Result result = core.SetUpDatabase();

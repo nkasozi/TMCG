@@ -223,12 +223,13 @@ namespace TcmpTestCore
             {
                 if (!payment.IsValid())
                 {
-                    result.StatusCode = SharedCommonsGlobals.FAILURE_STATUS_CODE;
+                    result.StatusCode = payment.StatusCode;
                     result.StatusDesc = $"{payment.StatusDesc}";
                     return result;
                 }
 
                 payment.Save();
+
                 result.StatusCode = SharedCommonsGlobals.SUCCESS_STATUS_CODE;
                 result.StatusDesc = SharedCommonsGlobals.SUCCESS_STATUS_TEXT;
             }

@@ -16,7 +16,7 @@ namespace TcmpWebForm
         {
             try
             {
-                
+
 
                 //if button click
                 if (IsPostBack)
@@ -417,7 +417,7 @@ namespace TcmpWebForm
         {
             try
             {
-                lblInfoMsg.Text="Deposit Funds on the Account with Details below"
+                lblInfoMsg.Text = "Deposit Funds on the Account with Details below";
                 multiViewContent.SetActiveView(viewBankDepositInstructions);
             }
             catch (Exception ex)
@@ -434,7 +434,20 @@ namespace TcmpWebForm
         {
             try
             {
-
+                string MerchantCode = Globals.GATEWAY_MERCHANTCODE;
+                string Currency = "UGX";
+                string ItemDesc = $"Payment For Sale [ {GenerateTransactionIDIfNotExists()} ]";
+                string CustomerRef = Session["CustID"] as string;
+                string Amount = GetItemTotal();
+                string Password = SharedCommons.GenearetHMACSha256Hash(Globals.GATEWAY_SECRET_KEY, Globals.GATEWAY_PASSWORD);
+                string ReturnUrl = Globals.RETURN_URL;
+                string VendorCode = Globals.GATEWAY_VENDORCODE;
+                string VendorTranId = GenerateTransactionIDIfNotExists();
+                string datatToSign = VendorCode + MerchantCode + Amount + ItemDesc + Currency + ReturnUrl + VendorTranId;
+                string DigitalSignature = SharedCommons.GenearetHMACSha256Hash(Globals.GATEWAY_SECRET_KEY, datatToSign);
+                string RequestData = "VENDORCODE=" + VendorCode + "&PASSWORD=" + Password + "&VENDOR_TRANID=" + VendorTranId + "&ITEM_TOTAL=" + Amount + "&ITEM_DESCRIPTION=" + ItemDesc + "&CURRENCY=" + Currency + "&RETURN_URL=" + ReturnUrl + "&DIGITAL_SIGNATURE=" + DigitalSignature + "&MERCHANTCODE=" + MerchantCode + "&CUSTOMER_REF=" + CustomerRef;
+                string URL = Globals.URL_FOR_PEGASUS_PAYMENTS_GATEWAY + "?" + RequestData;
+                Response.Redirect(URL);
             }
             catch (Exception ex)
             {
@@ -444,6 +457,17 @@ namespace TcmpWebForm
                 //log error
                 SharedLogic.TcmpTestCore.LogError($"EXCEPTION:{ex.Message}", $"{this.GetType().Name}-{SharedLogic.GetCurrentMethod()}", "N/A");
             }
+        }
+
+        private string GetItemTotal()
+        {
+            List<Item> shoppingCart = GetItemsAlreadyInShoppingCart();
+            int total = 0;
+            foreach (var item in shoppingCart)
+            {
+                total += item.ItemPrice;
+            }
+            return total.ToString();
         }
 
         protected void btnBrowse_Click(object sender, EventArgs e)
