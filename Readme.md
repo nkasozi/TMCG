@@ -41,10 +41,10 @@ Software Architecture Overview
 
 *Screenshots*
 ----------------------------
-![Screenshots](https://imgur.com/Uo4hyi4)
-![Screenshots](https://imgur.com/RxUunKl)
-![Screenshots](https://imgur.com/gIRijJc)
-![Screenshots](https://imgur.com/IquvMCu)
-![Screenshots](https://imgur.com/IquvMCu)
-![Screenshots](https://imgur.com/SMbG4ZK)
-![Screenshots](https://imgur.com/XzjUHEc)
+![Screenshots](https://i.imgur.com/Uo4hyi4.png)
+![Screenshots](https://i.imgur.com/RxUunKl.png)
+![Screenshots](https://i.imgur.com/gIRijJc.png)
+![Screenshots](https://i.imgur.com/IquvMCu.png)
+![Screenshots](https://i.imgur.com/IquvMCu.png)
+![Screenshots](https://i.imgur.com/SMbG4ZK.png)
+![Screenshots](https://i.imgur.com/XzjUHEc.png)
