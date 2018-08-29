@@ -16,8 +16,8 @@ public class Globals
     public const string GATEWAY_PASSWORD = "T3rr1613";
     public static string GATEWAY_SECRET_KEY = "T3rr16132016";
     public const string GATEWAY_MERCHANTCODE = "100022";
-    public const string RETURN_URL = "http://localhost:8019/testFlexipayMarketPlace/Reciept.aspx";
-    public const string URL_FOR_PEGASUS_PAYMENTS_GATEWAY = "http://localhost:8019/TestPegasusPaymentsGateway/RPayment.aspx";
+    public const string RETURN_URL = "http://test.pegasus.co.ug:8019/testFlexipayMarketPlace/Reciept.aspx";
+    public const string URL_FOR_PEGASUS_PAYMENTS_GATEWAY = "http://test.pegasus.co.ug:8019/TestPegasusPaymentsGateway/RPayment.aspx";
     public const string UGX_CURRENCY_CODE = "UGX";
 
 }

@@ -25,6 +25,15 @@ Tools/Frameworks used
 * WCF Services for Rest Web Service Bank Calls
 * MSTest for Unit Testing
 * SQL Server 2017 for Database
+* Castle Active Record used as ORM
+
+Software Architecture Overview
+-----------------------
+
+* All the core logic is contained in a library 
+* Website and WebAPI just display and collect data from end user, library does the validations, transformations etc
+* A Rest API is used for System to System notifications e.g the Bank notifying us of a deposit made on the account at the bank
+* PayWeb (A Pegasus Card processing Gateway) is used as the Card Processor
 
 
 *Screenshots*
@@ -35,3 +44,4 @@ Tools/Frameworks used
 ![Screenshots](https://imgur.com/IquvMCu)
 ![Screenshots](https://imgur.com/IquvMCu)
 ![Screenshots](https://imgur.com/SMbG4ZK)
+![Screenshots](https://imgur.com/XzjUHEc)
