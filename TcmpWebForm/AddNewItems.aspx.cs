@@ -22,7 +22,7 @@ namespace TcmpWebForm
                 //is he logged in
                 if (!IsLoggedIn())
                 {
-                    Response.Redirect($"{SharedLogic.LOGIN_PAGE}?Msg={SharedLogic.RELOGIN_NEEDED_MSG}");
+                    Response.Redirect($"{Globals.LOGIN_PAGE}?Msg={Globals.RELOGIN_NEEDED_MSG}");
                 }
 
                 //if button click
@@ -59,7 +59,7 @@ namespace TcmpWebForm
             }
             catch (Exception ex)
             {
-                ShowErrorMsg(SharedLogic.INTERNAL_ERROR_MSG);
+                ShowErrorMsg(Globals.INTERNAL_ERROR_MSG);
 
                 //log error
                 SharedLogic.TcmpTestCore.LogError($"EXCEPTION:{ex.Message}", $"{this.GetType().Name}-{SharedLogic.GetCurrentMethod()}", "N/A");
@@ -122,7 +122,7 @@ namespace TcmpWebForm
             }
             catch (Exception ex)
             {
-                ShowErrorMsg(SharedLogic.INTERNAL_ERROR_MSG);
+                ShowErrorMsg(Globals.INTERNAL_ERROR_MSG);
 
                 //log error
                 SharedLogic.TcmpTestCore.LogError($"EXCEPTION:{ex.Message}", $"{this.GetType().Name}-{SharedLogic.GetCurrentMethod()}", "N/A");
@@ -135,7 +135,7 @@ namespace TcmpWebForm
 
             if (!fuItemImage.HasFile)
             {
-                return SharedLogic.PLACEHOLDER_BASE64_STRING;
+                return Globals.PLACEHOLDER_BASE64_STRING;
             }
 
             string fileExtension = Path.GetExtension(fuItemImage.PostedFile.FileName);
@@ -159,11 +159,11 @@ namespace TcmpWebForm
             try
             {
                 Session.Clear();
-                Response.Redirect($"{SharedLogic.LOGIN_PAGE}?Msg={SharedLogic.SUCCESSFULL_LOGOUT_MSG}");
+                Response.Redirect($"{Globals.LOGIN_PAGE}?Msg={Globals.SUCCESSFULL_LOGOUT_MSG}");
             }
             catch (Exception ex)
             {
-                ShowErrorMsg(SharedLogic.INTERNAL_ERROR_MSG);
+                ShowErrorMsg(Globals.INTERNAL_ERROR_MSG);
 
                 //log error
                 SharedLogic.TcmpTestCore.LogError($"EXCEPTION:{ex.Message}", $"{this.GetType().Name}-{SharedLogic.GetCurrentMethod()}", "N/A");
@@ -205,7 +205,7 @@ namespace TcmpWebForm
             }
             catch (Exception ex)
             {
-                ShowErrorMsg(SharedLogic.INTERNAL_ERROR_MSG);
+                ShowErrorMsg(Globals.INTERNAL_ERROR_MSG);
 
                 //log error
                 SharedLogic.TcmpTestCore.LogError($"EXCEPTION:{ex.Message}", $"{this.GetType().Name}-{SharedLogic.GetCurrentMethod()}", "N/A");

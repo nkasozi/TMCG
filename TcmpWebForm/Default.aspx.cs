@@ -10,13 +10,10 @@ namespace TcmpWebForm
 {
     public partial class _Default : Page
     {
-        //public List<Item> ItemsAvailableForSale = new List<Item>();
-
         protected void Page_Load(object sender, EventArgs e)
         {
             try
             {
-
 
                 //if button click
                 if (IsPostBack)
@@ -27,6 +24,7 @@ namespace TcmpWebForm
                 if (IsItemAddRequest())
                 {
                     UpdateShoppingCart();
+                    return;
                 }
 
                 SetMutliviewDefaultView();
@@ -44,7 +42,7 @@ namespace TcmpWebForm
             }
             catch (Exception ex)
             {
-                ShowErrorMsg(SharedLogic.INTERNAL_ERROR_MSG);
+                ShowErrorMsg(Globals.INTERNAL_ERROR_MSG);
 
                 //log error
                 SharedLogic.TcmpTestCore.LogError($"EXCEPTION:{ex.Message}", $"{this.GetType().Name}-{SharedLogic.GetCurrentMethod()}", "N/A");
@@ -101,7 +99,7 @@ namespace TcmpWebForm
             }
             catch (Exception ex)
             {
-                ShowErrorMsg(SharedLogic.INTERNAL_ERROR_MSG);
+                ShowErrorMsg(Globals.INTERNAL_ERROR_MSG);
 
                 //log error
                 SharedLogic.TcmpTestCore.LogError($"EXCEPTION:{ex.Message}", $"{this.GetType().Name}-{SharedLogic.GetCurrentMethod()}", "N/A");
@@ -204,7 +202,7 @@ namespace TcmpWebForm
             }
             catch (Exception ex)
             {
-                ShowErrorMsg(SharedLogic.INTERNAL_ERROR_MSG);
+                ShowErrorMsg(Globals.INTERNAL_ERROR_MSG);
 
                 //log error
                 SharedLogic.TcmpTestCore.LogError($"EXCEPTION:{ex.Message}", $"{this.GetType().Name}-{SharedLogic.GetCurrentMethod()}", "N/A");
@@ -257,7 +255,7 @@ namespace TcmpWebForm
             }
             catch (Exception ex)
             {
-                ShowErrorMsg(SharedLogic.INTERNAL_ERROR_MSG);
+                ShowErrorMsg(Globals.INTERNAL_ERROR_MSG);
 
                 //log error
                 SharedLogic.TcmpTestCore.LogError($"EXCEPTION:{ex.Message}", $"{this.GetType().Name}-{SharedLogic.GetCurrentMethod()}", "N/A");
@@ -348,7 +346,7 @@ namespace TcmpWebForm
             }
             catch (Exception ex)
             {
-                ShowErrorMsg(SharedLogic.INTERNAL_ERROR_MSG);
+                ShowErrorMsg(Globals.INTERNAL_ERROR_MSG);
 
                 //log error
                 SharedLogic.TcmpTestCore.LogError($"EXCEPTION:{ex.Message}", $"{this.GetType().Name}-{SharedLogic.GetCurrentMethod()}", "N/A");
@@ -390,7 +388,7 @@ namespace TcmpWebForm
             catch (Exception ex)
             {
                 //display error
-                ShowErrorMsg(SharedLogic.INTERNAL_ERROR_MSG);
+                ShowErrorMsg(Globals.INTERNAL_ERROR_MSG);
 
                 //log error
                 SharedLogic.TcmpTestCore.LogError($"EXCEPTION:{ex.Message}", $"{this.GetType().Name}-{SharedLogic.GetCurrentMethod()}", "N/A");
@@ -406,7 +404,7 @@ namespace TcmpWebForm
             catch (Exception ex)
             {
                 //display error
-                ShowErrorMsg(SharedLogic.INTERNAL_ERROR_MSG);
+                ShowErrorMsg(Globals.INTERNAL_ERROR_MSG);
 
                 //log error
                 SharedLogic.TcmpTestCore.LogError($"EXCEPTION:{ex.Message}", $"{this.GetType().Name}-{SharedLogic.GetCurrentMethod()}", "N/A");
@@ -423,7 +421,7 @@ namespace TcmpWebForm
             catch (Exception ex)
             {
                 //display error
-                ShowErrorMsg(SharedLogic.INTERNAL_ERROR_MSG);
+                ShowErrorMsg(Globals.INTERNAL_ERROR_MSG);
 
                 //log error
                 SharedLogic.TcmpTestCore.LogError($"EXCEPTION:{ex.Message}", $"{this.GetType().Name}-{SharedLogic.GetCurrentMethod()}", "N/A");
@@ -452,7 +450,7 @@ namespace TcmpWebForm
             catch (Exception ex)
             {
                 //display error
-                ShowErrorMsg(SharedLogic.INTERNAL_ERROR_MSG);
+                ShowErrorMsg(Globals.INTERNAL_ERROR_MSG);
 
                 //log error
                 SharedLogic.TcmpTestCore.LogError($"EXCEPTION:{ex.Message}", $"{this.GetType().Name}-{SharedLogic.GetCurrentMethod()}", "N/A");
@@ -479,7 +477,7 @@ namespace TcmpWebForm
             catch (Exception ex)
             {
                 //display error
-                ShowErrorMsg(SharedLogic.INTERNAL_ERROR_MSG);
+                ShowErrorMsg(Globals.INTERNAL_ERROR_MSG);
 
                 //log error
                 SharedLogic.TcmpTestCore.LogError($"EXCEPTION:{ex.Message}", $"{this.GetType().Name}-{SharedLogic.GetCurrentMethod()}", "N/A");
@@ -525,7 +523,7 @@ namespace TcmpWebForm
             catch (Exception ex)
             {
                 //display error
-                ShowErrorMsg(SharedLogic.INTERNAL_ERROR_MSG);
+                ShowErrorMsg(Globals.INTERNAL_ERROR_MSG);
 
                 //log error
                 SharedLogic.TcmpTestCore.LogError($"EXCEPTION:{ex.Message}", $"{this.GetType().Name}-{SharedLogic.GetCurrentMethod()}", "N/A");
@@ -542,7 +540,7 @@ namespace TcmpWebForm
             catch (Exception ex)
             {
                 //display error
-                ShowErrorMsg(SharedLogic.INTERNAL_ERROR_MSG);
+                ShowErrorMsg(Globals.INTERNAL_ERROR_MSG);
 
                 //log error
                 SharedLogic.TcmpTestCore.LogError($"EXCEPTION:{ex.Message}", $"{this.GetType().Name}-{SharedLogic.GetCurrentMethod()}", "N/A");
@@ -559,7 +557,7 @@ namespace TcmpWebForm
             catch (Exception ex)
             {
                 //display error
-                ShowErrorMsg(SharedLogic.INTERNAL_ERROR_MSG);
+                ShowErrorMsg(Globals.INTERNAL_ERROR_MSG);
 
                 //log error
                 SharedLogic.TcmpTestCore.LogError($"EXCEPTION:{ex.Message}", $"{this.GetType().Name}-{SharedLogic.GetCurrentMethod()}", "N/A");

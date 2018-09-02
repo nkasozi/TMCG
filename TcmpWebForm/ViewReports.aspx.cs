@@ -5,7 +5,6 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using TcmpTestCore;
-using TcmpWebForm.AppCode;
 
 namespace TcmpWebForm
 {
@@ -20,7 +19,7 @@ namespace TcmpWebForm
                 //is he logged in
                 if (!IsLoggedIn())
                 {
-                    Response.Redirect($"{SharedLogic.LOGIN_PAGE}?Msg={SharedLogic.RELOGIN_NEEDED_MSG}");
+                    Response.Redirect($"{Globals.LOGIN_PAGE}?Msg={Globals.RELOGIN_NEEDED_MSG}");
                 }
 
                 //if button click
@@ -35,7 +34,7 @@ namespace TcmpWebForm
             }
             catch (Exception ex)
             {
-                ShowErrorMsg(SharedLogic.INTERNAL_ERROR_MSG);
+                ShowErrorMsg(Globals.INTERNAL_ERROR_MSG);
 
                 //log error
                 SharedLogic.TcmpTestCore.LogError($"EXCEPTION:{ex.Message}", $"{this.GetType().Name}-{SharedLogic.GetCurrentMethod()}", "N/A");
@@ -45,17 +44,15 @@ namespace TcmpWebForm
 
         public Chart LoadItemsStockReport()
         {
-            Item[] items = SharedLogic.TcmpTestCore.GetAll("ITEM") as Item[];
-            Chart barChart = new Chart();
-            foreach (var item in items)
-            {
-                barChart.XAxisValues.Add(item.ItemName);
-                barChart.YAxisValues.Add(item.ItemCount.ToString());
-                barChart.lblXAxis += $"\"{item.ItemName}\",";
-            }
-            barChart.lblXAxis = barChart.lblXAxis.Trim(',');
-            barChart.lblYAxis = "\"Amount Left In Stock\"";
             lblInfoMsg.Text = "Select Graph You want to see generated";
+            Chart barChart = SharedLogic.TcmpTestCore.GenerateChart("ITEM_STOCK_CHART");
+            return barChart;
+        }
+
+        public Chart LoadPaymentsReport()
+        {
+            lblInfoMsg.Text = "Select Graph You want to see generated";
+            Chart barChart = SharedLogic.TcmpTestCore.GenerateChart("PAYMENTS_PER_MONTH_CHART");
             return barChart;
         }
 
@@ -84,11 +81,11 @@ namespace TcmpWebForm
             try
             {
                 Session.Clear();
-                Response.Redirect($"{SharedLogic.LOGIN_PAGE}?Msg={SharedLogic.SUCCESSFULL_LOGOUT_MSG}");
+                Response.Redirect($"{Globals.LOGIN_PAGE}?Msg={Globals.SUCCESSFULL_LOGOUT_MSG}");
             }
             catch (Exception ex)
             {
-                ShowErrorMsg(SharedLogic.INTERNAL_ERROR_MSG);
+                ShowErrorMsg(Globals.INTERNAL_ERROR_MSG);
 
                 //log error
                 SharedLogic.TcmpTestCore.LogError($"EXCEPTION:{ex.Message}", $"{this.GetType().Name}-{SharedLogic.GetCurrentMethod()}", "N/A");

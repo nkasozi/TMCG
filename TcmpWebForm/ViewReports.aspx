@@ -1,5 +1,5 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ViewReports.aspx.cs" Inherits="TcmpWebForm.ViewReports" %>
-<%@ Import Namespace="TcmpWebForm.AppCode" %>
+<%@ Import Namespace="TcmpTestCore" %>
 
 <html>
 
@@ -54,6 +54,53 @@
                             <div class="col-lg-6">
                                 <% 
                                     Chart chart = LoadItemsStockReport();
+                                %>
+                                <canvas id="myChart" width="400" height="400"></canvas>
+                                <script>
+                                    var ctx = document.getElementById("myChart").getContext('2d');
+                                    var myChart = new Chart(ctx, {
+                                        type: 'bar',
+                                        data: {
+                                            labels: [<%Response.Write(chart.GetXAxisValuesAsCommaSeparatedString());%>],
+                                            datasets: [{
+                                                label: <%Response.Write(chart.lblYAxis);%>,
+                                                data: [<%Response.Write(chart.GetYAxisValuesAsCommaSeparatedString());%>],
+                                                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                                                borderColor: 'rgba(75, 192, 192, 1)',
+                                                borderWidth: 1
+                                            }]
+                                        },
+                                        options: {
+                                            scales: {
+                                                yAxes: [{
+                                                    ticks: {
+                                                        beginAtZero:true
+                                                    }
+                                                }]
+                                            }
+                                        }
+                                    });
+                                </script>
+
+                            </div>
+
+                            <div class="col-lg-3">
+                            </div>
+
+                        </div>
+
+                    </asp:View>
+                    <%-- ------------------  PAYMENTS GRAPH--------- --%>
+                    <asp:View runat="server" ID="view1">
+
+                        <div class="row">
+
+                            <div class="col-lg-3">
+                            </div>
+
+                            <div class="col-lg-6">
+                                <% 
+                                    Chart chart = LoadPaymentsReport();
                                 %>
                                 <canvas id="myChart" width="400" height="400"></canvas>
                                 <script>

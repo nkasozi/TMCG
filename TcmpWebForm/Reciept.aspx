@@ -143,39 +143,15 @@
                     </tr>
                     <tr class="item">
                         <td>
-                            <asp:Label ID="Label3" runat="server">Merchant Name</asp:Label>
+                            <asp:Label ID="Label2" runat="server">TCMP Shop Transaction Id</asp:Label>
                         </td>
                         <td>
-                            <asp:Label ID="lblMerchantName" runat="server">NWSC</asp:Label>
-                        </td>
-                    </tr>
-                    <tr class="item">
-                        <td>
-                            <asp:Label ID="Label" runat="server">Payment Channel</asp:Label>
-                        </td>
-                        <td>
-                            <asp:Label ID="lblPaymentType" runat="server">$10.00</asp:Label>
-                        </td>
-                    </tr>
-                    <tr class="heading">
-                        <td>
-                            Description
-                        </td>
-                        <td>
-                            Value
+                            <asp:Label ID="lblShopId" runat="server">$10.00</asp:Label>
                         </td>
                     </tr>
                     <tr class="item">
                         <td>
-                            <asp:Label ID="Label2" runat="server">Flexipay Transaction Id</asp:Label>
-                        </td>
-                        <td>
-                            <asp:Label ID="lblFlexipayId" runat="server">$10.00</asp:Label>
-                        </td>
-                    </tr>
-                    <tr class="item">
-                        <td>
-                            <asp:Label ID="Label1" runat="server">Payment Channel Transaction Id</asp:Label>
+                            <asp:Label ID="Label1" runat="server">Payment Transaction Id</asp:Label>
                         </td>
                         <td>
                             <asp:Label ID="lblExternalId" runat="server">$10.00</asp:Label>
@@ -191,10 +167,10 @@
                     </tr>
                     <tr class="item">
                         <td>
-                            <asp:Label ID="Label5" runat="server">PRN</asp:Label>
+                            <asp:Label ID="Label5" runat="server">Custoer Contact</asp:Label>
                         </td>
                         <td>
-                            <asp:Label ID="lblPRN" runat="server">$10.00</asp:Label>
+                            <asp:Label ID="lblCustContact" runat="server">$10.00</asp:Label>
                         </td>
                     </tr>
                     <tr class="item">
@@ -207,18 +183,10 @@
                     </tr>
                     <tr class="item">
                         <td>
-                            <asp:Label ID="lblItemDesc" runat="server">Item Desc</asp:Label>
+                            <asp:Label ID="lblDesc" runat="server">Item Desc</asp:Label>
                         </td>
                         <td>
-                            <asp:Label ID="lblItemTotal" runat="server">$10.00</asp:Label>
-                        </td>
-                    </tr>
-                    <tr class="item last">
-                        <td>
-                            <asp:Label ID="lblItemCharge" runat="server">Charge Amount</asp:Label>
-                        </td>
-                        <td>
-                            <asp:Label ID="lblItemChargeAmount" runat="server">$10.00</asp:Label>
+                            <asp:Label ID="lblItemDesc" runat="server">$10.00</asp:Label>
                         </td>
                     </tr>
                     <tr class="total">
@@ -232,7 +200,7 @@
                 </table>
             </div>
         </asp:View>
-        <asp:View ID="EmptyView" runat="server">
+        <asp:View ID="ViewError" runat="server">
             <div class="jumbotron text-center" style="padding-top: 10px; padding-bottom: 10px">
                 <h3 class="display-3">
                     <asp:Label ID="lblMsg" runat="server" />

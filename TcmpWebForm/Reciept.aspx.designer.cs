@@ -58,42 +58,6 @@ namespace TcmpWebForm {
         protected global::System.Web.UI.WebControls.View RecieptView;
         
         /// <summary>
-        /// Label3 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label3;
-        
-        /// <summary>
-        /// lblMerchantName control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblMerchantName;
-        
-        /// <summary>
-        /// Label control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label;
-        
-        /// <summary>
-        /// lblPaymentType control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblPaymentType;
-        
-        /// <summary>
         /// Label2 control.
         /// </summary>
         /// <remarks>
@@ -103,13 +67,13 @@ namespace TcmpWebForm {
         protected global::System.Web.UI.WebControls.Label Label2;
         
         /// <summary>
-        /// lblFlexipayId control.
+        /// lblShopId control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblFlexipayId;
+        protected global::System.Web.UI.WebControls.Label lblShopId;
         
         /// <summary>
         /// Label1 control.
@@ -157,13 +121,13 @@ namespace TcmpWebForm {
         protected global::System.Web.UI.WebControls.Label Label5;
         
         /// <summary>
-        /// lblPRN control.
+        /// lblCustContact control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblPRN;
+        protected global::System.Web.UI.WebControls.Label lblCustContact;
         
         /// <summary>
         /// Label4 control.
@@ -184,6 +148,15 @@ namespace TcmpWebForm {
         protected global::System.Web.UI.WebControls.Label lblPaymentDate;
         
         /// <summary>
+        /// lblDesc control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblDesc;
+        
+        /// <summary>
         /// lblItemDesc control.
         /// </summary>
         /// <remarks>
@@ -191,33 +164,6 @@ namespace TcmpWebForm {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblItemDesc;
-        
-        /// <summary>
-        /// lblItemTotal control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblItemTotal;
-        
-        /// <summary>
-        /// lblItemCharge control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblItemCharge;
-        
-        /// <summary>
-        /// lblItemChargeAmount control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblItemChargeAmount;
         
         /// <summary>
         /// Label7 control.
@@ -238,13 +184,13 @@ namespace TcmpWebForm {
         protected global::System.Web.UI.WebControls.Label lblTotalTranAmount;
         
         /// <summary>
-        /// EmptyView control.
+        /// ViewError control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.View EmptyView;
+        protected global::System.Web.UI.WebControls.View ViewError;
         
         /// <summary>
         /// lblMsg control.

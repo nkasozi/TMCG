@@ -109,6 +109,40 @@ namespace TcmpTestCore
             return sales;
         }
 
+        public Chart GenerateChart(string ReportCode)
+        {
+            Chart chart = new Chart();
+            switch (ReportCode)
+            {
+                case "ITEM_STOCK_CHART":
+                    Item[] items = GetAll("ITEM") as Item[];
+                    foreach (var item in items)
+                    {
+                        chart.XAxisValues.Add(item.ItemName);
+                        chart.YAxisValues.Add(item.ItemCount.ToString());
+                        chart.lblXAxis += $"\"{item.ItemName}\",";
+                    }
+
+                    chart.lblXAxis = chart.lblXAxis.Trim(',');
+                    chart.lblYAxis = "\"Amount Left In Stock\"";
+                    break;
+                case "PAYMENTS_PER_MONTH_CHART":
+                    PaymentPerMonth[] payments = PaymentPerMonth.QueryWithStoredProc("GeneratePaymentsReport");
+
+                    foreach (var payment in payments)
+                    {
+                        chart.XAxisValues.Add(payment.MonthAndYear);
+                        chart.YAxisValues.Add(payment.NumberOfPayments);
+                        chart.lblXAxis += $"\"{payment.MonthAndYear}\",";
+                    }
+
+                    chart.lblXAxis = chart.lblXAxis.Trim(',');
+                    chart.lblYAxis = "\"Total Sale Amounts Per Month\"";
+                    break;
+            }
+            return chart;
+        }
+
         public object[] GetAll(string Type)
         {
             try
@@ -228,7 +262,16 @@ namespace TcmpTestCore
                     return result;
                 }
 
-                payment.Save();
+                payment.SaveWithStoredProc("SavePayment",payment.PaymentId,
+                                                         payment.PaymentChannel,
+                                                         payment.PaymentType,
+                                                         payment.PayerName,
+                                                         payment.PaymentNarration,
+                                                         payment.PaymentAmount,
+                                                         payment.PayerContact,
+                                                         payment.PaymentSystemCode,
+                                                         payment.DigitalSignature,
+                                                         payment.SaleID);
 
                 result.StatusCode = SharedCommonsGlobals.SUCCESS_STATUS_CODE;
                 result.StatusDesc = SharedCommonsGlobals.SUCCESS_STATUS_TEXT;
@@ -595,11 +638,26 @@ namespace TcmpTestCore
 
             type = new PaymentType
             {
-                TypeCode = "ONLINE",
-                TypeName = "Online"
+                TypeCode = "ONLINE-PAYMENT",
+                TypeName = "Online Payment"
             };
 
             result = RegisterPaymentType(type);
+
+            //failed to save
+            if (result.StatusCode != SharedCommonsGlobals.SUCCESS_STATUS_CODE)
+            {
+                return result;
+            }
+
+            PaymentSystem system = new PaymentSystem
+            {
+                PaymentSystemCode = "WEB-PORTAL",
+                SecretKey = "T3rr16132016",
+                Password="T3rr1613"
+            };
+
+            result = RegisterPaymentSystem(system);
 
             //failed to save
             if (result.StatusCode != SharedCommonsGlobals.SUCCESS_STATUS_CODE)

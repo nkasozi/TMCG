@@ -39,10 +39,20 @@ namespace TcmpTestCore
         public string PaymentSystemCode { get; set; }
 
         [Property(Length = 50)]
+        public string SaleID { get; set; }
+
         public string Password { get; set; }
 
         [Property(Length = 50)]
         public string DigitalSignature { get; set; }
+
+        [Property]
+        public DateTime PaymentDate { get; set; }
+
+        public Payment()
+        {
+            PaymentDate = DateTime.Now;
+        }
 
         public override bool IsValid()
         {
@@ -82,7 +92,7 @@ namespace TcmpTestCore
                 return false;
             }
 
-            string dataToSign = PaymentSystemCode + Password + PaymentAmount + PaymentId + PaymentChannel + PayerContact + PayerName;
+            string dataToSign = PaymentSystemCode + PaymentAmount + PaymentId + PaymentChannel + PayerContact + PayerName + SaleID;
             string hmacHash = SharedCommons.GenearetHMACSha256Hash(system.SecretKey, dataToSign);
 
             if (DigitalSignature != hmacHash)

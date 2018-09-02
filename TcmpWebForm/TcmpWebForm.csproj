@@ -258,7 +258,6 @@
     <Compile Include="AddNewItems.aspx.designer.cs">
       <DependentUpon>AddNewItems.aspx</DependentUpon>
     </Compile>
-    <Compile Include="AppCode\Chart.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="About.aspx.cs">
       <DependentUpon>About.aspx</DependentUpon>
