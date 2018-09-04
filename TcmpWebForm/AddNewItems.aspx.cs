@@ -98,7 +98,8 @@ namespace TcmpWebForm
         {
 
             //double check...if session is null, then this is the first request, we fetch the items from the database
-            ItemsAvailableForSale = SharedLogic.TcmpTestCore.GetAllAvailableItems();
+            ItemsAvailableForSale = new List<Item>();
+            ItemsAvailableForSale.AddRange(SharedLogic.TcmpTestCore.GetAll(nameof(Item).ToUpper()) as Item[]);
 
             return ItemsAvailableForSale;
         }

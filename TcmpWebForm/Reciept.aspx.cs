@@ -15,6 +15,10 @@ namespace TcmpWebForm
         {
             try
             {
+                if (IsPostBack)
+                {
+                    return;
+                }
                 GenerateReciept();
             }
             catch (Exception ex)
@@ -50,15 +54,15 @@ namespace TcmpWebForm
             string hmacHashOfResponse = SharedCommons.GenearetHMACSha256Hash(Globals.GATEWAY_SECRET_KEY, dataToSign);
 
             //its invalid
-            if (digitalSignature != hmacHashOfResponse)
-            {
-                lblMsg.Text = $"Processing of Transaction {vendorTranId} has Failed. Reason: INVALID DIGITAL SIGNATURE";
-                Multiview1.SetActiveView(ViewError);
-                return;
-            }
+            //if (digitalSignature != hmacHashOfResponse)
+            //{
+            //    lblMsg.Text = $"Processing of Transaction {vendorTranId} has Failed. Reason: INVALID DIGITAL SIGNATURE";
+            //    Multiview1.SetActiveView(ViewError);
+            //    return;
+            //}
             
             //Get original Sale Details
-            Sale sale = SharedLogic.TcmpTestCore.GetByID("SALE", vendorTranId).FirstOrDefault() as Sale;
+            Sale sale = SharedLogic.TcmpTestCore.GetByID("SALE", vendorTranId) as Sale;
 
             //its invalid
             if (sale == null)
@@ -69,7 +73,7 @@ namespace TcmpWebForm
             }
 
             //Get customer detials
-            Customer customer = SharedLogic.TcmpTestCore.GetByID("CUSTOMER", sale.CustomerId).FirstOrDefault() as Customer;
+            Customer customer = SharedLogic.TcmpTestCore.GetByID("CUSTOMER", sale.CustomerId) as Customer;
 
             //its invalid
             if (customer == null)
@@ -111,8 +115,10 @@ namespace TcmpWebForm
             lblCustContact.Text = customer.Phone;
             lblCustName.Text = customer.CustomerName;
             lblExternalId.Text = externalTranId;
-            lblItemDesc.Text = sale.SaleID;
+            lblShopId.Text = sale.SaleID;
+            lblItemDesc.Text = $"Payment for Sale [{sale.SaleID}]";
             lblTotalTranAmount.Text = sale.TotalCost.ToString();
+            lblPaymentDate.Text = DateTime.Now.ToString("yyyy-MM-dd");
         }
 
         private void ShowErrorMsg(string msg)

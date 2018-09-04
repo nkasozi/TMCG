@@ -57,16 +57,21 @@ namespace TcmpTestCore.Tests
         {
             Payment payment = new Payment
             {
-                DigitalSignature = SharedCommons.GenerateRandomString(),
-                Password = "T3rr1613",
-                PayerContact = "0794132389",
-                PaymentChannel = "BANK",
-                PaymentId = "1325621",
-                PaymentNarration = "Test Payment",
-                PaymentSystemCode = "SBU",
-                PaymentType = "CASH",
-                PayerName = "Nsubuga Kasozi"
+                Password = SharedCommons.GenearetHMACSha256Hash(Globals.API_SECRETKEY, Globals.API_PASSWORD),
+                PayerContact = "0785975800",
+                PayerName = "Nsubuga Kasozi",
+                PaymentAmount = 500,
+                PaymentChannel = Globals.API_PAYMENT_TYPE,
+                PaymentId = SharedCommons.GenerateUniqueId("TEST-"),
+                PaymentNarration = $"Payment for Sale",
+                PaymentSystemCode = Globals.API_SYSTEMCODE,
+                PaymentType = Globals.API_PAYMENT_TYPE,
+                SaleID = "SALE-636711535592554164"
             };
+
+            //sign the request
+            string dataToSign = payment.PaymentSystemCode + payment.PaymentAmount + payment.PaymentId + payment.PaymentChannel + payment.PayerContact + payment.PayerName + payment.SaleID;
+            payment.DigitalSignature = SharedCommons.GenearetHMACSha256Hash(Globals.API_SECRETKEY, dataToSign);
 
             TcmpCore core = new TcmpCore();
             Result result = core.PayForTransaction(payment);

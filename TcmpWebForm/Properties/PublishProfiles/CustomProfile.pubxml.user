@@ -1,0 +1,400 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+This file is used by the publish/package process of your Web project. You can customize the behavior of this process
+by editing this MSBuild file. In order to learn more about this please visit https://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <_PublishTargetUrl>https://localhost:8019/TcmpShop</_PublishTargetUrl>
+  </PropertyGroup>
+  <ItemGroup>
+    <File Include="About.aspx">
+      <publishTime>08/28/2018 18:39:33</publishTime>
+    </File>
+    <File Include="AddNewItems.aspx">
+      <publishTime>08/30/2018 00:49:23</publishTime>
+    </File>
+    <File Include="ApplicationInsights.config">
+      <publishTime>08/28/2018 18:39:59</publishTime>
+    </File>
+    <File Include="bin/Antlr3.Runtime.dll">
+      <publishTime>09/10/2013 16:29:20</publishTime>
+    </File>
+    <File Include="bin/Antlr3.Runtime.pdb">
+      <publishTime>09/10/2013 16:29:20</publishTime>
+    </File>
+    <File Include="bin/ApplicationInsights.config">
+      <publishTime>08/28/2018 18:39:59</publishTime>
+    </File>
+    <File Include="bin/App_global.asax.compiled">
+      <publishTime>09/03/2018 23:45:14</publishTime>
+    </File>
+    <File Include="bin/App_global.asax.dll">
+      <publishTime>09/03/2018 23:45:14</publishTime>
+    </File>
+    <File Include="bin/AspNet.ScriptManager.bootstrap.dll">
+      <publishTime>09/06/2016 10:55:00</publishTime>
+    </File>
+    <File Include="bin/AspNet.ScriptManager.jQuery.dll">
+      <publishTime>01/25/2018 10:42:28</publishTime>
+    </File>
+    <File Include="bin/Caramel.Castle.ActiveRecord.dll">
+      <publishTime>03/21/2012 15:30:44</publishTime>
+    </File>
+    <File Include="bin/Caramel.dll">
+      <publishTime>04/02/2012 14:56:06</publishTime>
+    </File>
+    <File Include="bin/Castle.ActiveRecord.dll">
+      <publishTime>02/06/2011 00:33:34</publishTime>
+    </File>
+    <File Include="bin/Castle.ActiveRecord.Web.dll">
+      <publishTime>02/06/2011 00:33:34</publishTime>
+    </File>
+    <File Include="bin/Castle.Components.Validator.dll">
+      <publishTime>01/06/2011 21:23:42</publishTime>
+    </File>
+    <File Include="bin/Castle.Components.Validator.pdb">
+      <publishTime>01/06/2011 21:23:42</publishTime>
+    </File>
+    <File Include="bin/Castle.Core.dll">
+      <publishTime>12/14/2011 19:55:58</publishTime>
+    </File>
+    <File Include="bin/DbEntity.dll">
+      <publishTime>08/29/2018 01:04:19</publishTime>
+    </File>
+    <File Include="bin/DbEntity.dll.config">
+      <publishTime>08/26/2018 17:59:11</publishTime>
+    </File>
+    <File Include="bin/DbEntity.pdb">
+      <publishTime>08/29/2018 01:04:19</publishTime>
+    </File>
+    <File Include="bin/Encryption.dll">
+      <publishTime>11/19/2012 12:54:42</publishTime>
+    </File>
+    <File Include="bin/es/Castle.Components.Validator.resources.dll">
+      <publishTime>01/06/2011 21:23:42</publishTime>
+    </File>
+    <File Include="bin/fr/Castle.Components.Validator.resources.dll">
+      <publishTime>01/06/2011 21:23:42</publishTime>
+    </File>
+    <File Include="bin/Iesi.Collections.dll">
+      <publishTime>01/06/2011 21:24:18</publishTime>
+    </File>
+    <File Include="bin/it/Castle.Components.Validator.resources.dll">
+      <publishTime>01/06/2011 21:23:42</publishTime>
+    </File>
+    <File Include="bin/lt/Castle.Components.Validator.resources.dll">
+      <publishTime>01/06/2011 21:23:42</publishTime>
+    </File>
+    <File Include="bin/lv/Castle.Components.Validator.resources.dll">
+      <publishTime>01/06/2011 21:23:42</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AI.Agent.Intercept.dll">
+      <publishTime>06/27/2017 12:59:34</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AI.DependencyCollector.dll">
+      <publishTime>02/22/2018 16:25:18</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AI.PerfCounterCollector.dll">
+      <publishTime>02/22/2018 16:36:44</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AI.ServerTelemetryChannel.dll">
+      <publishTime>02/22/2018 14:39:42</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AI.Web.dll">
+      <publishTime>02/22/2018 16:35:08</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AI.WindowsServer.dll">
+      <publishTime>02/22/2018 16:36:42</publishTime>
+    </File>
+    <File Include="bin/Microsoft.ApplicationInsights.dll">
+      <publishTime>02/22/2018 14:36:52</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AspNet.FriendlyUrls.dll">
+      <publishTime>07/30/2013 16:57:30</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AspNet.TelemetryCorrelation.dll">
+      <publishTime>06/28/2017 15:05:26</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AspNet.Web.Optimization.WebForms.dll">
+      <publishTime>02/11/2014 15:26:04</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Practices.EnterpriseLibrary.Common.dll">
+      <publishTime>04/16/2010 11:16:58</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Practices.EnterpriseLibrary.Common.pdb">
+      <publishTime>04/16/2010 11:11:48</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Practices.EnterpriseLibrary.Data.dll">
+      <publishTime>04/16/2010 11:16:58</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Practices.EnterpriseLibrary.Data.pdb">
+      <publishTime>04/16/2010 11:11:56</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Practices.ServiceLocation.dll">
+      <publishTime>01/06/2011 21:23:58</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Practices.ServiceLocation.pdb">
+      <publishTime>01/06/2011 21:23:58</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Practices.Unity.dll">
+      <publishTime>04/16/2010 10:42:32</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Practices.Unity.Interception.dll">
+      <publishTime>04/16/2010 10:42:32</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Practices.Unity.Interception.pdb">
+      <publishTime>04/16/2010 10:42:32</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Practices.Unity.pdb">
+      <publishTime>04/16/2010 10:42:32</publishTime>
+    </File>
+    <File Include="bin/Microsoft.ScriptManager.MSAjax.dll">
+      <publishTime>09/06/2013 11:20:12</publishTime>
+    </File>
+    <File Include="bin/Microsoft.ScriptManager.WebForms.dll">
+      <publishTime>09/06/2013 11:20:22</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Web.Infrastructure.dll">
+      <publishTime>07/25/2012 11:48:56</publishTime>
+    </File>
+    <File Include="bin/mk/Castle.Components.Validator.resources.dll">
+      <publishTime>01/06/2011 21:23:42</publishTime>
+    </File>
+    <File Include="bin/Newtonsoft.Json.dll">
+      <publishTime>02/18/2018 09:44:54</publishTime>
+    </File>
+    <File Include="bin/NHibernate.ByteCode.Castle.dll">
+      <publishTime>01/20/2011 16:57:10</publishTime>
+    </File>
+    <File Include="bin/NHibernate.dll">
+      <publishTime>01/20/2011 16:57:10</publishTime>
+    </File>
+    <File Include="bin/NHibernate.Search.dll">
+      <publishTime>02/06/2011 00:33:34</publishTime>
+    </File>
+    <File Include="bin/nl/Castle.Components.Validator.resources.dll">
+      <publishTime>01/06/2011 21:23:42</publishTime>
+    </File>
+    <File Include="bin/pl/Castle.Components.Validator.resources.dll">
+      <publishTime>01/06/2011 21:23:42</publishTime>
+    </File>
+    <File Include="bin/pt/Castle.Components.Validator.resources.dll">
+      <publishTime>01/06/2011 21:23:42</publishTime>
+    </File>
+    <File Include="bin/Remotion.Data.Linq.dll">
+      <publishTime>01/20/2011 16:57:10</publishTime>
+    </File>
+    <File Include="bin/ru/Castle.Components.Validator.resources.dll">
+      <publishTime>01/06/2011 21:23:42</publishTime>
+    </File>
+    <File Include="bin/SharedCommons.dll">
+      <publishTime>08/29/2018 04:18:11</publishTime>
+    </File>
+    <File Include="bin/SharedCommons.pdb">
+      <publishTime>08/29/2018 04:18:11</publishTime>
+    </File>
+    <File Include="bin/sv/Castle.Components.Validator.resources.dll">
+      <publishTime>01/06/2011 21:23:42</publishTime>
+    </File>
+    <File Include="bin/System.Diagnostics.DiagnosticSource.dll">
+      <publishTime>07/19/2017 10:01:30</publishTime>
+    </File>
+    <File Include="bin/System.Web.Optimization.dll">
+      <publishTime>02/11/2014 15:26:04</publishTime>
+    </File>
+    <File Include="bin/TcmpTestCore.dll">
+      <publishTime>09/03/2018 23:45:05</publishTime>
+    </File>
+    <File Include="bin/TcmpTestCore.dll.config">
+      <publishTime>08/28/2018 23:10:55</publishTime>
+    </File>
+    <File Include="bin/TcmpTestCore.pdb">
+      <publishTime>09/03/2018 23:45:05</publishTime>
+    </File>
+    <File Include="bin/TcmpWebForm.dll">
+      <publishTime>09/03/2018 23:45:06</publishTime>
+    </File>
+    <File Include="bin/TcmpWebForm.pdb">
+      <publishTime>09/03/2018 23:45:06</publishTime>
+    </File>
+    <File Include="bin/WebGrease.dll">
+      <publishTime>01/23/2014 13:57:34</publishTime>
+    </File>
+    <File Include="Bundle.config">
+      <publishTime>08/28/2018 18:39:33</publishTime>
+    </File>
+    <File Include="Contact.aspx">
+      <publishTime>08/28/2018 18:39:33</publishTime>
+    </File>
+    <File Include="Content/bootstrap-theme.css">
+      <publishTime>08/28/2018 18:39:51</publishTime>
+    </File>
+    <File Include="Content/bootstrap-theme.css.map">
+      <publishTime>08/28/2018 18:39:51</publishTime>
+    </File>
+    <File Include="Content/bootstrap-theme.min.css">
+      <publishTime>08/28/2018 18:39:51</publishTime>
+    </File>
+    <File Include="Content/bootstrap-theme.min.css.map">
+      <publishTime>08/28/2018 18:39:51</publishTime>
+    </File>
+    <File Include="Content/bootstrap.css">
+      <publishTime>08/28/2018 18:39:50</publishTime>
+    </File>
+    <File Include="Content/bootstrap.css.map">
+      <publishTime>08/28/2018 18:39:50</publishTime>
+    </File>
+    <File Include="Content/bootstrap.min.css">
+      <publishTime>08/28/2018 18:39:50</publishTime>
+    </File>
+    <File Include="Content/bootstrap.min.css.map">
+      <publishTime>08/28/2018 18:39:50</publishTime>
+    </File>
+    <File Include="Content/Site.css">
+      <publishTime>08/29/2018 19:20:32</publishTime>
+    </File>
+    <File Include="Default.aspx">
+      <publishTime>09/03/2018 23:34:54</publishTime>
+    </File>
+    <File Include="favicon.ico">
+      <publishTime>08/28/2018 18:39:33</publishTime>
+    </File>
+    <File Include="fonts/glyphicons-halflings-regular.eot">
+      <publishTime>08/28/2018 18:39:50</publishTime>
+    </File>
+    <File Include="fonts/glyphicons-halflings-regular.svg">
+      <publishTime>08/28/2018 18:39:50</publishTime>
+    </File>
+    <File Include="fonts/glyphicons-halflings-regular.ttf">
+      <publishTime>08/28/2018 18:39:50</publishTime>
+    </File>
+    <File Include="fonts/glyphicons-halflings-regular.woff">
+      <publishTime>08/28/2018 18:39:50</publishTime>
+    </File>
+    <File Include="fonts/glyphicons-halflings-regular.woff2">
+      <publishTime>08/28/2018 18:39:50</publishTime>
+    </File>
+    <File Include="Images/bankIcon2.png">
+      <publishTime>08/29/2018 15:22:16</publishTime>
+    </File>
+    <File Include="Images/cardsIcon.png">
+      <publishTime>08/29/2018 15:22:16</publishTime>
+    </File>
+    <File Include="PrecompiledApp.config">
+      <publishTime>09/03/2018 23:45:08</publishTime>
+    </File>
+    <File Include="Reciept.aspx">
+      <publishTime>09/02/2018 20:33:43</publishTime>
+    </File>
+    <File Include="Scripts/bootstrap.js">
+      <publishTime>08/28/2018 18:39:50</publishTime>
+    </File>
+    <File Include="Scripts/bootstrap.min.js">
+      <publishTime>08/28/2018 18:39:50</publishTime>
+    </File>
+    <File Include="Scripts/jquery-3.3.1.js">
+      <publishTime>08/28/2018 18:39:46</publishTime>
+    </File>
+    <File Include="Scripts/jquery-3.3.1.min.js">
+      <publishTime>08/28/2018 18:39:46</publishTime>
+    </File>
+    <File Include="Scripts/jquery-3.3.1.min.map">
+      <publishTime>08/28/2018 18:39:46</publishTime>
+    </File>
+    <File Include="Scripts/jquery-3.3.1.slim.js">
+      <publishTime>08/28/2018 18:39:46</publishTime>
+    </File>
+    <File Include="Scripts/jquery-3.3.1.slim.min.js">
+      <publishTime>08/28/2018 18:39:46</publishTime>
+    </File>
+    <File Include="Scripts/jquery-3.3.1.slim.min.map">
+      <publishTime>08/28/2018 18:39:46</publishTime>
+    </File>
+    <File Include="Scripts/modernizr-2.8.3.js">
+      <publishTime>08/28/2018 18:39:49</publishTime>
+    </File>
+    <File Include="Scripts/WebForms/DetailsView.js">
+      <publishTime>08/28/2018 18:39:54</publishTime>
+    </File>
+    <File Include="Scripts/WebForms/Focus.js">
+      <publishTime>08/28/2018 18:39:54</publishTime>
+    </File>
+    <File Include="Scripts/WebForms/GridView.js">
+      <publishTime>08/28/2018 18:39:54</publishTime>
+    </File>
+    <File Include="Scripts/WebForms/Menu.js">
+      <publishTime>08/28/2018 18:39:54</publishTime>
+    </File>
+    <File Include="Scripts/WebForms/MenuStandards.js">
+      <publishTime>08/28/2018 18:39:54</publishTime>
+    </File>
+    <File Include="Scripts/WebForms/MSAjax/MicrosoftAjax.js">
+      <publishTime>08/28/2018 18:39:53</publishTime>
+    </File>
+    <File Include="Scripts/WebForms/MSAjax/MicrosoftAjaxApplicationServices.js">
+      <publishTime>08/28/2018 18:39:53</publishTime>
+    </File>
+    <File Include="Scripts/WebForms/MSAjax/MicrosoftAjaxComponentModel.js">
+      <publishTime>08/28/2018 18:39:53</publishTime>
+    </File>
+    <File Include="Scripts/WebForms/MSAjax/MicrosoftAjaxCore.js">
+      <publishTime>08/28/2018 18:39:53</publishTime>
+    </File>
+    <File Include="Scripts/WebForms/MSAjax/MicrosoftAjaxGlobalization.js">
+      <publishTime>08/28/2018 18:39:53</publishTime>
+    </File>
+    <File Include="Scripts/WebForms/MSAjax/MicrosoftAjaxHistory.js">
+      <publishTime>08/28/2018 18:39:53</publishTime>
+    </File>
+    <File Include="Scripts/WebForms/MSAjax/MicrosoftAjaxNetwork.js">
+      <publishTime>08/28/2018 18:39:53</publishTime>
+    </File>
+    <File Include="Scripts/WebForms/MSAjax/MicrosoftAjaxSerialization.js">
+      <publishTime>08/28/2018 18:39:53</publishTime>
+    </File>
+    <File Include="Scripts/WebForms/MSAjax/MicrosoftAjaxTimer.js">
+      <publishTime>08/28/2018 18:39:53</publishTime>
+    </File>
+    <File Include="Scripts/WebForms/MSAjax/MicrosoftAjaxWebForms.js">
+      <publishTime>08/28/2018 18:39:53</publishTime>
+    </File>
+    <File Include="Scripts/WebForms/MSAjax/MicrosoftAjaxWebServices.js">
+      <publishTime>08/28/2018 18:39:53</publishTime>
+    </File>
+    <File Include="Scripts/WebForms/SmartNav.js">
+      <publishTime>08/28/2018 18:39:54</publishTime>
+    </File>
+    <File Include="Scripts/WebForms/TreeView.js">
+      <publishTime>08/28/2018 18:39:54</publishTime>
+    </File>
+    <File Include="Scripts/WebForms/WebForms.js">
+      <publishTime>08/28/2018 18:39:54</publishTime>
+    </File>
+    <File Include="Scripts/WebForms/WebParts.js">
+      <publishTime>08/28/2018 18:39:54</publishTime>
+    </File>
+    <File Include="Scripts/WebForms/WebUIValidation.js">
+      <publishTime>08/28/2018 18:39:54</publishTime>
+    </File>
+    <File Include="Site.Master">
+      <publishTime>08/28/2018 20:02:26</publishTime>
+    </File>
+    <File Include="Site.Mobile.Master">
+      <publishTime>08/28/2018 18:39:56</publishTime>
+    </File>
+    <File Include="TestBankPayment.aspx">
+      <publishTime>09/03/2018 23:22:29</publishTime>
+    </File>
+    <File Include="ViewReports.aspx">
+      <publishTime>09/03/2018 22:31:59</publishTime>
+    </File>
+    <File Include="ViewSwitcher.ascx">
+      <publishTime>08/28/2018 18:39:55</publishTime>
+    </File>
+    <File Include="Web.config">
+      <publishTime>09/03/2018 23:38:37</publishTime>
+    </File>
+  </ItemGroup>
+</Project>

@@ -9,7 +9,7 @@ namespace TcmpTestCore
 {
     public class PaymentPerMonth:DbEntity<PaymentPerMonth>
     {
-        public string NumberOfPayments { get; set; }
+        public int NumberOfPayments { get; set; }
         public string MonthAndYear { get; set; }
     }
 }

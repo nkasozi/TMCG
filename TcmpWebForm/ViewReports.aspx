@@ -1,10 +1,11 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ViewReports.aspx.cs" Inherits="TcmpWebForm.ViewReports" %>
+
 <%@ Import Namespace="TcmpTestCore" %>
 
 <html>
 
 <head>
-    <title>TCMP Shopping Site</title>
+    <title>TMCG Shopping Site</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -18,15 +19,16 @@
         <div class="container">
             <div class="row">
                 <div class="gallery col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
-                    <h1 class="standOut-Heading">TCMP Shopping Site</h1>
+                    <h1 class="standOut-Heading">TMCG Shopping Site</h1>
                     <hr />
                 </div>
 
 
                 <div align="center">
                     <asp:Button runat="server" Text="Name: Username" ID="btnUserDetails" CssClass="btn btn-success padded-button" data-filter="all" Enabled="false" />
-                     <asp:Button runat="server" Text="Items Stock Graph" ID="btnStockGraph" class="btn btn-primary padded-button" data-filter="sprinkle" Enabled="true" />
-                    <asp:Button runat="server" Text="PaymentChannels Frequency" ID="btnAddItems" CssClass="btn btn-info padded-button" data-filter="all" Enabled="false" />
+                    <asp:Button runat="server" Text="Items Stock Graph" ID="btnStockGraph" class="btn btn-primary padded-button" data-filter="sprinkle" OnClick="btnStockGraph_Click" />
+                    <asp:Button runat="server" Text="Sales Report" ID="btnSalesReport" CssClass="btn btn-info padded-button" data-filter="all" OnClick="btnSalesReport_Click" />
+                    <asp:Button runat="server" Text="All Payments" ID="btnAllPayments" CssClass="btn btn-info padded-button" data-filter="all" OnClick="btnAllPayments_Click" />
                     <asp:Button runat="server" Text="Logout/Sign Out" ID="btnLogout" class="btn btn-warning padded-button" data-filter="sprinkle" OnClick="btnLogout_Click" />
                 </div>
                 <hr />
@@ -74,7 +76,7 @@
                                             scales: {
                                                 yAxes: [{
                                                     ticks: {
-                                                        beginAtZero:true
+                                                        beginAtZero: true
                                                     }
                                                 }]
                                             }
@@ -90,8 +92,9 @@
                         </div>
 
                     </asp:View>
+
                     <%-- ------------------  PAYMENTS GRAPH--------- --%>
-                    <asp:View runat="server" ID="view1">
+                    <asp:View runat="server" ID="viewSalesReport">
 
                         <div class="row">
 
@@ -121,7 +124,7 @@
                                             scales: {
                                                 yAxes: [{
                                                     ticks: {
-                                                        beginAtZero:true
+                                                        beginAtZero: true
                                                     }
                                                 }]
                                             }
@@ -129,6 +132,58 @@
                                     });
                                 </script>
 
+                            </div>
+
+                            <div class="col-lg-3">
+                            </div>
+
+                        </div>
+
+                    </asp:View>
+
+                    <%-- ------------------  PAYMENTS GRAPH--------- --%>
+                    <asp:View runat="server" ID="viewAllPayments">
+
+                        <div class="row">
+
+                            <div class="col-lg-3">
+                            </div>
+
+                            <div class="col-lg-6">
+                                <div class="row" style="margin-top: 15px;">
+
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">Payment ID</th>
+                                                <th scope="col">Payer Name</th>
+                                                <th scope="col">Sale ID</th>
+                                                <th scope="col">Amount Paid</th>
+                                                <th scope="col">Payment Channel</th>
+                                                <th scope="col">Payment SystemCode</th>
+                                                <th scope="col">Payment Date</th>
+                                            </tr>
+                                        </thead>
+
+                                        <tbody>
+                                            <% 
+                                                List<Payment> payments = LoadAllPaymentsMade();
+                                                foreach (var item in payments)
+                                                {
+                                            %>
+                                            <tr>
+                                                <th scope="row"><%Response.Write(item.PaymentId); %></th>
+                                                <td><%Response.Write(item.PayerName); %></td>
+                                                <td><%Response.Write(item.SaleID); %></td>
+                                                <td><%Response.Write(item.PaymentAmount); %></td>
+                                                <td><%Response.Write(item.PaymentChannel); %></td>
+                                                <td><%Response.Write(item.PaymentSystemCode); %></td>
+                                                <td><%Response.Write(item.PaymentDate); %></td>
+                                            </tr>
+                                            <%} %>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
 
                             <div class="col-lg-3">

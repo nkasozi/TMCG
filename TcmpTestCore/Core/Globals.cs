@@ -12,7 +12,7 @@ public class Globals
     public const string PENDING_STATUS_CODE = "1000";
     public const string SUCCESS_STATUS_TEXT = "SUCCESS";
     public const string PENDING_STATUS_TEXT = "PENDING";
-    public const string GATEWAY_VENDORCODE = "test";
+    public const string GATEWAY_VENDORCODE = "tmcg";
     public const string GATEWAY_PASSWORD = "T3rr1613";
     public const string GATEWAY_SECRET_KEY = "T3rr16132016";
     public const string GATEWAY_MERCHANTCODE = "130022";
@@ -20,7 +20,7 @@ public class Globals
     public const string API_SYSTEMCODE = "WEB-PORTAL";
     public const string API_SECRETKEY = "T3rr16132016";
     public const string API_PAYMENT_TYPE = "ONLINE-PAYMENT";
-    public const string RETURN_URL = "http://localhost:8019/TMCGTest/Reciept.aspx";
+    public const string RETURN_URL = "https://41.210.174.210:8019/TCMPShop/Reciept.aspx";
     public const string URL_FOR_PEGASUS_PAYMENTS_GATEWAY = "https://test.pegasus.co.ug:8019/TestPegasusPaymentsGateway/RPayment.aspx";
     public const string UGX_CURRENCY_CODE = "UGX";
     public const string INTERNAL_ERROR_MSG = "An Internal Error Occured. Please try Again Later";
@@ -29,6 +29,6 @@ public class Globals
     public const string SUCCESSFULL_LOGOUT_MSG = "You Have Been Logged Out Successfully";
     public const string RELOGIN_NEEDED_MSG = "You Have To Login Again";
 
-
+    public const string REST_API_URL = "https://41.210.174.210:8019/Service.svc/rest/PayForTransaction";
 }
 

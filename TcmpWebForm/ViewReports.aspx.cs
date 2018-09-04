@@ -39,7 +39,6 @@ namespace TcmpWebForm
                 //log error
                 SharedLogic.TcmpTestCore.LogError($"EXCEPTION:{ex.Message}", $"{this.GetType().Name}-{SharedLogic.GetCurrentMethod()}", "N/A");
             }
-
         }
 
         public Chart LoadItemsStockReport()
@@ -69,7 +68,7 @@ namespace TcmpWebForm
         {
             multiViewContent.SetActiveView(viewRegsisterItem);
         }
-
+        
         private void ShowErrorMsg(string msg)
         {
             //show error
@@ -90,6 +89,28 @@ namespace TcmpWebForm
                 //log error
                 SharedLogic.TcmpTestCore.LogError($"EXCEPTION:{ex.Message}", $"{this.GetType().Name}-{SharedLogic.GetCurrentMethod()}", "N/A");
             }
+        }
+
+        protected void btnSalesReport_Click(object sender, EventArgs e)
+        {
+            multiViewContent.SetActiveView(viewSalesReport);
+        }
+
+        protected void btnStockGraph_Click(object sender, EventArgs e)
+        {
+            SetMutliviewDefaultView();
+        }
+
+        protected void btnAllPayments_Click(object sender, EventArgs e)
+        {
+            multiViewContent.SetActiveView(viewAllPayments);
+        }
+
+        public List<Payment> LoadAllPaymentsMade()
+        {
+            List<Payment> allPayments = new List<Payment>();
+            allPayments.AddRange(SharedLogic.TcmpTestCore.GetAll("PAYMENT") as Payment[]);
+            return allPayments;
         }
     }
 }

@@ -9,7 +9,6 @@ namespace TcmpTestCore
 {
     public interface ITcmpCoreInterface
     {
-        List<Item> GetAllAvailableItems();
 
         Result RegisterSaleItems(SaleItem[] saleItems);
 
@@ -27,7 +26,7 @@ namespace TcmpTestCore
 
         Result RegisterCustomer(Customer user);
 
-        object[] GetByID(string Type, string ID);
+        object GetByID(string Type, string ID);
 
         object[] GetAll(string Type);
 
@@ -42,33 +41,18 @@ namespace TcmpTestCore
 
     public class TcmpCore : ITcmpCoreInterface
     {
-        public List<Item> GetAllAvailableItems()
-        {
-            List<Item> all = new List<Item>();
-            try
-            {
-                //pick all items that are in stock ie. count>0
-                Item[] items = Item.QueryWithStoredProc("GetAllItems").ToArray();
-
-                //populate response
-                all.AddRange(items);
-            }
-            catch (Exception)
-            {
-            }
-            return all;
-        }
-
-        public object[] GetByID(string Type, string ID)
+        public object GetByID(string Type, string ID)
         {
             try
             {
                 switch (Type)
                 {
                     case "USERROLE":
-                        return UserRole.FindAll().Where(i => i.RoleCode == ID).ToArray();
+                        return UserRole.FindAll().Where(i => i.RoleCode == ID).ToArray().FirstOrDefault();
                     case "SALE":
-                        return GetSalesById(ID);
+                        return Sale.GetSalesById(ID).FirstOrDefault();
+                    case "CUSTOMER":
+                        return Customer.QueryWithStoredProc("GetCustomerByID",ID).FirstOrDefault();
                 }
             }
             catch (Exception)
@@ -79,66 +63,43 @@ namespace TcmpTestCore
             return new object[] { };
         }
 
-        private static object[] GetSalesById(string ID)
-        {
-            Sale[] sales = Sale.QueryWithStoredProc("GetSaleByID",ID).ToArray();
-            foreach (var sale in sales)
-            {
-                SaleItem[] saleItems = SaleItem.QueryWithStoredProc("GetSaleItemsBySaleID", sale.Id).ToArray();
-                foreach (var saleItem in saleItems)
-                {
-                    Item item = Item.QueryWithStoredProc("GetItemByID", saleItem.ItemId).FirstOrDefault();
-                    sale.TotalCost += item != null ? item.ItemPrice : 0;
-                }
-            }
-            return sales;
-        }
-
-        private static object[] GetSales()
-        {
-            Sale[] sales = Sale.QueryWithStoredProc("GetAllSales").ToArray();
-            foreach (var sale in sales)
-            {
-                SaleItem[] saleItems = SaleItem.QueryWithStoredProc("GetSaleItemsBySaleID",sale.Id).ToArray();
-                foreach (var saleItem in saleItems)
-                {
-                    Item item = Item.QueryWithStoredProc("GetItemByID",saleItem.ItemId).FirstOrDefault();
-                    sale.TotalCost += item != null ? item.ItemPrice : 0;
-                }
-            }
-            return sales;
-        }
-
         public Chart GenerateChart(string ReportCode)
         {
             Chart chart = new Chart();
-            switch (ReportCode)
+            try
             {
-                case "ITEM_STOCK_CHART":
-                    Item[] items = GetAll("ITEM") as Item[];
-                    foreach (var item in items)
-                    {
-                        chart.XAxisValues.Add(item.ItemName);
-                        chart.YAxisValues.Add(item.ItemCount.ToString());
-                        chart.lblXAxis += $"\"{item.ItemName}\",";
-                    }
+                switch (ReportCode)
+                {
+                    case "ITEM_STOCK_CHART":
+                        Item[] items = GetAll("ITEM") as Item[];
+                        foreach (var item in items)
+                        {
+                            chart.XAxisValues.Add(item.ItemName);
+                            chart.YAxisValues.Add(item.ItemCount.ToString());
+                            chart.lblXAxis += $"\"{item.ItemName}\",";
+                        }
 
-                    chart.lblXAxis = chart.lblXAxis.Trim(',');
-                    chart.lblYAxis = "\"Amount Left In Stock\"";
-                    break;
-                case "PAYMENTS_PER_MONTH_CHART":
-                    PaymentPerMonth[] payments = PaymentPerMonth.QueryWithStoredProc("GeneratePaymentsReport");
+                        chart.lblXAxis = chart.lblXAxis.Trim(',');
+                        chart.lblYAxis = "\"Amount Left In Stock\"";
+                        break;
+                    case "PAYMENTS_PER_MONTH_CHART":
+                        PaymentPerMonth[] payments = PaymentPerMonth.QueryWithStoredProc("GeneratePaymentsReport");
 
-                    foreach (var payment in payments)
-                    {
-                        chart.XAxisValues.Add(payment.MonthAndYear);
-                        chart.YAxisValues.Add(payment.NumberOfPayments);
-                        chart.lblXAxis += $"\"{payment.MonthAndYear}\",";
-                    }
+                        foreach (var payment in payments)
+                        {
+                            chart.XAxisValues.Add(payment.MonthAndYear);
+                            chart.YAxisValues.Add(payment.NumberOfPayments.ToString());
+                            chart.lblXAxis += $"\"{payment.MonthAndYear}\",";
+                        }
 
-                    chart.lblXAxis = chart.lblXAxis.Trim(',');
-                    chart.lblYAxis = "\"Total Sale Amounts Per Month\"";
-                    break;
+                        chart.lblXAxis = chart.lblXAxis.Trim(',');
+                        chart.lblYAxis = "\"Total Sales Revenue (UGX) Per Month\"";
+                        break;
+                }
+            }
+            catch (Exception ex)
+            {
+
             }
             return chart;
         }
@@ -152,9 +113,11 @@ namespace TcmpTestCore
                     case "USERROLE":
                         return UserRole.FindAll().ToArray();
                     case "SALE":
-                        return GetSales();
+                        return Sale.GetSales();
+                    case "PAYMENT":
+                        return Payment.QueryWithStoredProc("GetAllPayments");
                     case "ITEM":
-                        return Item.FindAll().ToArray();
+                        return Item.QueryWithStoredProc("GetAllItems");
                 }
             }
             catch (Exception)
@@ -190,7 +153,7 @@ namespace TcmpTestCore
                 result.StatusCode = SharedCommonsGlobals.FAILURE_STATUS_CODE;
                 result.StatusDesc = $"ERROR: {ex.Message}";
             }
-            
+
             return result;
         }
 
@@ -214,7 +177,7 @@ namespace TcmpTestCore
                 }
 
                 //find the first user whose username is the one supplied
-                SystemUser user = SystemUser.QueryWithStoredProc("GetSystemUserByID",Username).FirstOrDefault();
+                SystemUser user = SystemUser.QueryWithStoredProc("GetSystemUserByID", Username).FirstOrDefault();
 
                 //oops no user found..stop
                 if (user == null)
@@ -246,7 +209,7 @@ namespace TcmpTestCore
                 result.StatusCode = SharedCommonsGlobals.FAILURE_STATUS_CODE;
                 result.StatusDesc = $"ERROR: {ex.Message}";
             }
-            
+
             return result;
         }
 
@@ -262,7 +225,7 @@ namespace TcmpTestCore
                     return result;
                 }
 
-                payment.SaveWithStoredProc("SavePayment",payment.PaymentId,
+                payment.SaveWithStoredProc("SavePayment", payment.PaymentId,
                                                          payment.PaymentChannel,
                                                          payment.PaymentType,
                                                          payment.PayerName,
@@ -281,7 +244,7 @@ namespace TcmpTestCore
                 result.StatusCode = SharedCommonsGlobals.FAILURE_STATUS_CODE;
                 result.StatusDesc = $"ERROR: {ex.Message}";
             }
-            
+
             return result;
         }
 
@@ -297,7 +260,7 @@ namespace TcmpTestCore
                     return result;
                 }
 
-                Customer old = Customer.QueryWithStoredProc("GetCustomerByID",cust.CustomerID).FirstOrDefault();
+                Customer old = Customer.QueryWithStoredProc("GetCustomerByID", cust.CustomerID).FirstOrDefault();
                 cust.Id = old != null ? old.Id : cust.Id;
 
                 cust.Save();
@@ -309,7 +272,7 @@ namespace TcmpTestCore
                 result.StatusCode = SharedCommonsGlobals.FAILURE_STATUS_CODE;
                 result.StatusDesc = $"ERROR: {ex.Message}";
             }
-            
+
             return result;
         }
 
@@ -325,10 +288,10 @@ namespace TcmpTestCore
                     return result;
                 }
 
-                Item old = Item.QueryWithStoredProc("GetItemByID",item.ItemCode).FirstOrDefault();
+                Item old = Item.QueryWithStoredProc("GetItemByID", item.ItemCode).FirstOrDefault();
                 item.Id = old != null ? old.Id : item.Id;
 
-                item.SaveWithStoredProc("SaveItem",item.ItemCode,item.ItemName,item.ItemPrice,item.ItemImage,item.ItemCount,item.ModifiedBy);
+                item.SaveWithStoredProc("SaveItem", item.ItemCode, item.ItemName, item.ItemPrice, item.ItemImage, item.ItemCount, item.ModifiedBy);
 
                 result.StatusCode = SharedCommonsGlobals.SUCCESS_STATUS_CODE;
                 result.StatusDesc = SharedCommonsGlobals.SUCCESS_STATUS_TEXT;
@@ -338,7 +301,7 @@ namespace TcmpTestCore
                 result.StatusCode = SharedCommonsGlobals.FAILURE_STATUS_CODE;
                 result.StatusDesc = $"ERROR: {ex.Message}";
             }
-            
+
             return result;
         }
 
@@ -354,7 +317,7 @@ namespace TcmpTestCore
                     return result;
                 }
 
-                PaymentSystem old = PaymentSystem.FindAll().Where(i => i.PaymentSystemCode == system.StatusCode).FirstOrDefault();
+                PaymentSystem old = PaymentSystem.FindAll().Where(i => i.PaymentSystemCode == system.PaymentSystemCode).FirstOrDefault();
                 system.Id = old != null ? old.Id : system.Id;
 
                 system.Save();
@@ -366,7 +329,7 @@ namespace TcmpTestCore
                 result.StatusCode = SharedCommonsGlobals.FAILURE_STATUS_CODE;
                 result.StatusDesc = $"ERROR: {ex.Message}";
             }
-            
+
             return result;
         }
 
@@ -395,7 +358,7 @@ namespace TcmpTestCore
                 result.StatusCode = SharedCommonsGlobals.FAILURE_STATUS_CODE;
                 result.StatusDesc = $"ERROR: {ex.Message}";
             }
-            
+
             return result;
         }
 
@@ -411,7 +374,7 @@ namespace TcmpTestCore
                     return result;
                 }
 
-                Sale old = Sale.QueryWithStoredProc("GetSaleID",sale.SaleID).FirstOrDefault();
+                Sale old = Sale.QueryWithStoredProc("GetSaleID", sale.SaleID).FirstOrDefault();
 
                 sale.Id = old != null ? old.Id : sale.Id;
 
@@ -424,7 +387,7 @@ namespace TcmpTestCore
                 result.StatusCode = SharedCommonsGlobals.FAILURE_STATUS_CODE;
                 result.StatusDesc = $"ERROR: {ex.Message}";
             }
-            
+
             return result;
         }
 
@@ -445,7 +408,7 @@ namespace TcmpTestCore
 
                 foreach (var item in saleItems)
                 {
-                    SaleItem old = SaleItem.QueryWithStoredProc("GetSaleItemByID",item.SaleId,item.ItemId).FirstOrDefault();
+                    SaleItem old = SaleItem.QueryWithStoredProc("GetSaleItemByID", item.SaleId, item.ItemId).FirstOrDefault();
                     item.Id = old != null ? old.Id : item.Id;
 
                     item.Save();
@@ -459,7 +422,7 @@ namespace TcmpTestCore
                 result.StatusCode = SharedCommonsGlobals.FAILURE_STATUS_CODE;
                 result.StatusDesc = $"ERROR: {ex.Message}";
             }
-            
+
             return result;
         }
 
@@ -477,7 +440,7 @@ namespace TcmpTestCore
                 }
 
                 //check among the existing users for someone with the same username
-                SystemUser old = SystemUser.QueryWithStoredProc("GetSystemUserByID",user.Username).FirstOrDefault();
+                SystemUser old = SystemUser.QueryWithStoredProc("GetSystemUserByID", user.Username).FirstOrDefault();
 
                 //a current user has been found with the same username
                 if (old != null)
@@ -503,7 +466,7 @@ namespace TcmpTestCore
                 result.StatusCode = SharedCommonsGlobals.FAILURE_STATUS_CODE;
                 result.StatusDesc = $"ERROR: {ex.Message}";
             }
-            
+
             return result;
         }
 
@@ -531,7 +494,7 @@ namespace TcmpTestCore
                 result.StatusCode = SharedCommonsGlobals.FAILURE_STATUS_CODE;
                 result.StatusDesc = $"ERROR: {ex.Message}";
             }
-            
+
             return result;
         }
 
@@ -571,7 +534,7 @@ namespace TcmpTestCore
                 result.StatusCode = SharedCommonsGlobals.FAILURE_STATUS_CODE;
                 result.StatusDesc = $"ERROR: {ex.Message}";
             }
-            
+
             return result;
         }
 
@@ -579,7 +542,7 @@ namespace TcmpTestCore
         {
             Result result = new Result();
 
-            
+
             UserRole role = new UserRole
             {
                 RoleCode = "SUPER_ADMIN",
@@ -654,7 +617,22 @@ namespace TcmpTestCore
             {
                 PaymentSystemCode = "WEB-PORTAL",
                 SecretKey = "T3rr16132016",
-                Password="T3rr1613"
+                Password = "T3rr1613"
+            };
+
+            result = RegisterPaymentSystem(system);
+
+            //failed to save
+            if (result.StatusCode != SharedCommonsGlobals.SUCCESS_STATUS_CODE)
+            {
+                return result;
+            }
+
+            system = new PaymentSystem
+            {
+                PaymentSystemCode = "TEST-BANK",
+                SecretKey = "T3rr16132016",
+                Password = "T3rr1613"
             };
 
             result = RegisterPaymentSystem(system);

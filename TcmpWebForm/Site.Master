@@ -61,7 +61,7 @@
             </asp:ContentPlaceHolder>
             <hr />
             <footer>
-                <p>&copy; <%: DateTime.Now.Year %> - TCMP Test Application</p>
+                <p>&copy; <%: DateTime.Now.Year %> - TMCG Test Application</p>
             </footer>
         </div>
 

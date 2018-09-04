@@ -24,7 +24,12 @@ namespace PegPayWebAPI
             Result aresult = SharedLogic.TcmpTestCore.SetUpDatabase();
             return result;
         }
-        
+
+        public Sale VerifySale(string SaleId, string PaymentSystemCode, string Password)
+        {
+            return SharedLogic.TcmpTestCore.GetByID("SALE", SaleId) as Sale;
+        }
+
 
         public Result PayForTransaction(Payment payment)
         {

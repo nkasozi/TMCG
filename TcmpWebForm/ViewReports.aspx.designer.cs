@@ -31,13 +31,22 @@ namespace TcmpWebForm {
         protected global::System.Web.UI.WebControls.Button btnStockGraph;
         
         /// <summary>
-        /// btnAddItems control.
+        /// btnSalesReport control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAddItems;
+        protected global::System.Web.UI.WebControls.Button btnSalesReport;
+        
+        /// <summary>
+        /// btnAllPayments control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnAllPayments;
         
         /// <summary>
         /// btnLogout control.
@@ -85,12 +94,21 @@ namespace TcmpWebForm {
         protected global::System.Web.UI.WebControls.View viewRegsisterItem;
         
         /// <summary>
-        /// view1 control.
+        /// viewSalesReport control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.View view1;
+        protected global::System.Web.UI.WebControls.View viewSalesReport;
+        
+        /// <summary>
+        /// viewAllPayments control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.View viewAllPayments;
     }
 }

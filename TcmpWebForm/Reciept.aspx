@@ -143,7 +143,7 @@
                     </tr>
                     <tr class="item">
                         <td>
-                            <asp:Label ID="Label2" runat="server">TCMP Shop Transaction Id</asp:Label>
+                            <asp:Label ID="Label2" runat="server">TMCG Shop Transaction Id</asp:Label>
                         </td>
                         <td>
                             <asp:Label ID="lblShopId" runat="server">$10.00</asp:Label>

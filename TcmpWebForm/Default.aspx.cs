@@ -74,7 +74,7 @@ namespace TcmpWebForm
                 List<Item> shoppingCart = GetItemsAlreadyInShoppingCart();
 
                 //look for the item with the id specified
-                Item itemSelected = ItemsAvailableForSale.Where(i => i.ItemCode == ItemId).FirstOrDefault();
+                Item itemSelected = shoppingCart.Where(i => i.ItemCode == ItemId).FirstOrDefault();
 
                 //we cant find the item selected
                 if (itemSelected == null)
@@ -95,7 +95,7 @@ namespace TcmpWebForm
 
                 lblItemCount.InnerText = $"{shoppingCart.Count}";
 
-                lblInfoMsg.Text = $"Item [{itemSelected.ItemName}] Added To Your Cart";
+                lblInfoMsg.Text = $"Item [{itemSelected.ItemName}] Removed From Your Cart";
             }
             catch (Exception ex)
             {
@@ -141,7 +141,8 @@ namespace TcmpWebForm
             List<Item> ItemsAvailableForSale = Session["AllItems"] as List<Item>;
 
             //double check...if session is null, then this is the first request, we fetch the items from the database
-            ItemsAvailableForSale = ItemsAvailableForSale ?? SharedLogic.TcmpTestCore.GetAllAvailableItems();
+            ItemsAvailableForSale = new List<Item>();
+            ItemsAvailableForSale.AddRange(SharedLogic.TcmpTestCore.GetAll("ITEM") as Item[]);
 
             //we save those items in memory
             Session["AllItems"] = ItemsAvailableForSale;
@@ -303,7 +304,7 @@ namespace TcmpWebForm
                     SaleID = GenerateTransactionIDIfNotExists(),
                     CustomerId = customer.CustomerID
                 };
-
+                
                 //initiate a new sale
                 result = SharedLogic.TcmpTestCore.RegisterSale(sale);
 
@@ -313,6 +314,9 @@ namespace TcmpWebForm
                     lblInfoMsg.Text = (result.StatusDesc);
                     return;
                 }
+
+                Session["SaleID"] = sale.SaleID;
+                lblSaleID.Text = sale.SaleID;
 
                 List<SaleItem> saleItems = new List<SaleItem>();
 

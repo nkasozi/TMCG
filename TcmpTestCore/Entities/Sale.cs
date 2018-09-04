@@ -39,5 +39,35 @@ namespace TcmpTestCore
 
             return base.IsValid();
         }
+
+        public static object[] GetSales()
+        {
+            Sale[] sales = Sale.QueryWithStoredProc("GetAllSales").ToArray();
+            foreach (var sale in sales)
+            {
+                SaleItem[] saleItems = SaleItem.QueryWithStoredProc("GetSaleItemsBySaleID", sale.Id).ToArray();
+                foreach (var saleItem in saleItems)
+                {
+                    Item item = Item.QueryWithStoredProc("GetItemByID", saleItem.ItemId).FirstOrDefault();
+                    sale.TotalCost += item != null ? item.ItemPrice : 0;
+                }
+            }
+            return sales;
+        }
+
+        public static object[] GetSalesById(string ID)
+        {
+            Sale[] sales = Sale.QueryWithStoredProc("GetSaleByID", ID).ToArray();
+            foreach (var sale in sales)
+            {
+                SaleItem[] saleItems = SaleItem.QueryWithStoredProc("GetSaleItemsBySaleID", sale.SaleID).ToArray();
+                foreach (var saleItem in saleItems)
+                {
+                    Item item = Item.QueryWithStoredProc("GetItemByID", saleItem.ItemId).FirstOrDefault();
+                    sale.TotalCost += item != null ? item.ItemPrice : 0;
+                }
+            }
+            return sales;
+        }
     }
 }
