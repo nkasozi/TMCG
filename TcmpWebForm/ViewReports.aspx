@@ -152,7 +152,7 @@
                             <div class="col-lg-6">
                                 <div class="row" style="margin-top: 15px;">
 
-                                    <table class="table">
+                                    <table class="table table-responsive">
                                         <thead>
                                             <tr>
                                                 <th scope="col">Payment ID</th>

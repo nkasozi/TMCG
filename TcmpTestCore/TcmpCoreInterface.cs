@@ -543,21 +543,21 @@ namespace TcmpTestCore
             Result result = new Result();
 
 
-            UserRole role = new UserRole
-            {
-                RoleCode = "SUPER_ADMIN",
-                RoleName = "Super Administrator"
-            };
+            //UserRole role = new UserRole
+            //{
+            //    RoleCode = "SUPER_ADMIN",
+            //    RoleName = "Super Administrator"
+            //};
 
-            result = RegisterUserRole(role);
+            //result = RegisterUserRole(role);
 
             //failed to save
-            if (result.StatusCode != SharedCommonsGlobals.SUCCESS_STATUS_CODE)
-            {
-                return result;
-            }
+            //if (result.StatusCode != SharedCommonsGlobals.SUCCESS_STATUS_CODE)
+            //{
+            //    return result;
+            //}
 
-            role = new UserRole
+            UserRole role = new UserRole
             {
                 RoleCode = "ADMIN",
                 RoleName = "Administrator"

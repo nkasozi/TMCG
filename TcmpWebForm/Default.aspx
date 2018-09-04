@@ -55,8 +55,10 @@
                             <a href="Default.aspx?ItemID=<% Response.Write(item.ItemCode); %>&Op=Add">
                                 <img src="<% Response.Write(item.ItemImage); %>" style="height:300px;width:365px;" class="img-thumbnail img-rounded img-responsive" />
                             </a>
-                            <label>Name: <% Response.Write(item.ItemName); %></label>,
-                            <label>Price: <% Response.Write(item.ItemPrice); %></label>
+                            <br />
+                            <label>Name: <% Response.Write(item.ItemName); %></label><br />
+                            <label>Price: <% Response.Write(item.ItemPrice); %> UGX</label><br />
+                            <label>Number Left: <% Response.Write(item.ItemCount); %></label>
                         </div>
 
                         <% } %>
@@ -232,6 +234,9 @@
                                             </tr>
                                         </tbody>
                                     </table>
+                                </div>
+                                <div class="row text-center">
+                                    <asp:Button runat="server" Text="Go Back" ID="btnGoBackToPaymentMethod" CssClass="btn btn-primary" OnClick="btnGoBackToPaymentMethod_Click" />
                                 </div>
                             </div>
                             <div class="col-lg-3">

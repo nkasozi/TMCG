@@ -124,6 +124,7 @@ namespace TcmpWebForm
             Result result = new Result();
             try
             {
+                ServicePointManager.ServerCertificateValidationCallback = RemoteCertificateValidation;
                 WebClient Proxy1 = new WebClient();
                 Proxy1.Headers["Content-type"] = "application/json";
                 MemoryStream ms = new MemoryStream();

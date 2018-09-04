@@ -1,4 +1,3 @@
-E:\TCMP\TcmpTest\TcmpTestCore\obj\Debug\TcmpTestCore.csproj.CoreCompileInputs.cache
 E:\TCMP\TcmpTest\TcmpTestCore\bin\Debug\TcmpTestCore.dll.config
 E:\TCMP\TcmpTest\TcmpTestCore\bin\Debug\TcmpTestCore.dll
 E:\TCMP\TcmpTest\TcmpTestCore\bin\Debug\TcmpTestCore.pdb
@@ -39,6 +38,7 @@ E:\TCMP\TcmpTest\TcmpTestCore\bin\Debug\Microsoft.Practices.Unity.pdb
 E:\TCMP\TcmpTest\TcmpTestCore\bin\Debug\Microsoft.Practices.Unity.Interception.pdb
 E:\TCMP\TcmpTest\TcmpTestCore\bin\Debug\NHibernate.xml
 E:\TCMP\TcmpTest\TcmpTestCore\bin\Debug\NHibernate.ByteCode.Castle.xml
+E:\TCMP\TcmpTest\TcmpTestCore\bin\Debug\SharedCommons.pdb
 E:\TCMP\TcmpTest\TcmpTestCore\bin\Debug\es\Castle.Components.Validator.resources.dll
 E:\TCMP\TcmpTest\TcmpTestCore\bin\Debug\fr\Castle.Components.Validator.resources.dll
 E:\TCMP\TcmpTest\TcmpTestCore\bin\Debug\it\Castle.Components.Validator.resources.dll
@@ -50,8 +50,8 @@ E:\TCMP\TcmpTest\TcmpTestCore\bin\Debug\pl\Castle.Components.Validator.resources
 E:\TCMP\TcmpTest\TcmpTestCore\bin\Debug\pt\Castle.Components.Validator.resources.dll
 E:\TCMP\TcmpTest\TcmpTestCore\bin\Debug\ru\Castle.Components.Validator.resources.dll
 E:\TCMP\TcmpTest\TcmpTestCore\bin\Debug\sv\Castle.Components.Validator.resources.dll
+E:\TCMP\TcmpTest\TcmpTestCore\obj\Debug\TcmpTestCore.csprojAssemblyReference.cache
+E:\TCMP\TcmpTest\TcmpTestCore\obj\Debug\TcmpTestCore.csproj.CoreCompileInputs.cache
 E:\TCMP\TcmpTest\TcmpTestCore\obj\Debug\TcmpTestCore.csproj.CopyComplete
 E:\TCMP\TcmpTest\TcmpTestCore\obj\Debug\TcmpTestCore.dll
 E:\TCMP\TcmpTest\TcmpTestCore\obj\Debug\TcmpTestCore.pdb
-E:\TCMP\TcmpTest\TcmpTestCore\bin\Debug\SharedCommons.pdb
-E:\TCMP\TcmpTest\TcmpTestCore\obj\Debug\TcmpTestCore.csprojAssemblyReference.cache

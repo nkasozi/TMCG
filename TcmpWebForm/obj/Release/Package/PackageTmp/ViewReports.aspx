@@ -5,7 +5,7 @@
 <html>
 
 <head>
-    <title>TCMP Shopping Site</title>
+    <title>TMCG Shopping Site</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -19,7 +19,7 @@
         <div class="container">
             <div class="row">
                 <div class="gallery col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
-                    <h1 class="standOut-Heading">TCMP Shopping Site</h1>
+                    <h1 class="standOut-Heading">TMCG Shopping Site</h1>
                     <hr />
                 </div>
 
@@ -152,7 +152,7 @@
                             <div class="col-lg-6">
                                 <div class="row" style="margin-top: 15px;">
 
-                                    <table class="table">
+                                    <table class="table table-responsive">
                                         <thead>
                                             <tr>
                                                 <th scope="col">Payment ID</th>

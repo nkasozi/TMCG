@@ -142,7 +142,12 @@ namespace TcmpWebForm
 
             //double check...if session is null, then this is the first request, we fetch the items from the database
             ItemsAvailableForSale = new List<Item>();
-            ItemsAvailableForSale.AddRange(SharedLogic.TcmpTestCore.GetAll("ITEM") as Item[]);
+            Item[] allItems = SharedLogic.TcmpTestCore.GetAll("ITEM") as Item[];
+
+            Item[] itemsInStock = allItems.Where(i => i.ItemCount > 0).ToArray();
+
+            //only show those items that have stock
+            ItemsAvailableForSale.AddRange(itemsInStock);
 
             //we save those items in memory
             Session["AllItems"] = ItemsAvailableForSale;
@@ -171,19 +176,27 @@ namespace TcmpWebForm
                 //get items stored in session
                 List<Item> shoppingCart = GetItemsAlreadyInShoppingCart();
 
+                //can we sell this item
+                Result result = CheckIfItemIsInStock(ItemsAvailableForSale, shoppingCart, ItemId);
+
+                //we cant sell this item
+                if (result.StatusCode!=SharedCommonsGlobals.SUCCESS_STATUS_CODE)
+                {
+                    lblItemCount.InnerText = $"{shoppingCart.Count}";
+                    Session["ItemsInShoppingCart"] = shoppingCart;
+                    lblInfoMsg.Text = result.StatusDesc;
+                    return;
+                }
+
                 //look for the item with the id specified
                 Item itemSelected = ItemsAvailableForSale.Where(i => i.ItemCode == ItemId).FirstOrDefault();
 
                 //we cant find the item selected
                 if (itemSelected == null)
                 {
-                    ShowErrorMsg("Unable to add Item Selected. Pick another Item");
-                    return;
-                }
-
-                if (itemSelected.ItemCount <= 0)
-                {
-                    ShowErrorMsg("Item Selected Is out of Stock");
+                    lblItemCount.InnerText = $"{shoppingCart.Count}";
+                    Session["ItemsInShoppingCart"] = shoppingCart;
+                    lblInfoMsg.Text = ("Unable to add Item Selected. Pick another Item");
                     return;
                 }
 
@@ -193,9 +206,6 @@ namespace TcmpWebForm
 
                 //save cart in session
                 Session["ItemsInShoppingCart"] = shoppingCart;
-
-                //update count of Items available for sale (locally)..db update will be done at point of payment
-                ItemsAvailableForSale.Where(i => i.ItemCode == ItemId).Select(S => { S.ItemCount = S.ItemCount - 1; return S; });
 
                 lblItemCount.InnerText = $"{shoppingCart.Count}";
 
@@ -208,6 +218,28 @@ namespace TcmpWebForm
                 //log error
                 SharedLogic.TcmpTestCore.LogError($"EXCEPTION:{ex.Message}", $"{this.GetType().Name}-{SharedLogic.GetCurrentMethod()}", "N/A");
             }
+        }
+
+        private Result CheckIfItemIsInStock(List<Item> ItemsAvailableForSale, List<Item> shoppingCart, string ItemId)
+        {
+            Result result = new Result();
+
+            int countOfSameItemsInShoppingCart = shoppingCart.Where(i => i.ItemCode == ItemId).ToArray().Length;
+            int countOfItemsAvailable = ItemsAvailableForSale.Where(i => i.ItemCode == ItemId).FirstOrDefault().ItemCount;
+
+            if ((countOfSameItemsInShoppingCart + 1) > countOfItemsAvailable)
+            {
+                lblItemCount.InnerText = $"{shoppingCart.Count}";
+                Session["ItemsInShoppingCart"] = shoppingCart;
+                result.StatusCode = SharedCommonsGlobals.FAILURE_STATUS_CODE;
+                result.StatusDesc = $"Item Selected Is out of Stock. You have already added remaining stock {countOfSameItemsInShoppingCart} to your Cart";
+                return result;
+            }
+            
+            //look for the item with the id specified
+            result.StatusCode = SharedCommonsGlobals.SUCCESS_STATUS_CODE;
+            result.StatusDesc = SharedCommonsGlobals.SUCCESS_STATUS_TEXT;
+            return result;
         }
 
         private void ShowErrorMsg(string msg)
@@ -557,6 +589,23 @@ namespace TcmpWebForm
             {
                 lblInfoMsg.Text = "Supply User Details Below";
                 multiViewContent.SetActiveView(viewRegisterUser);
+            }
+            catch (Exception ex)
+            {
+                //display error
+                ShowErrorMsg(Globals.INTERNAL_ERROR_MSG);
+
+                //log error
+                SharedLogic.TcmpTestCore.LogError($"EXCEPTION:{ex.Message}", $"{this.GetType().Name}-{SharedLogic.GetCurrentMethod()}", "N/A");
+            }
+        }
+
+        protected void btnGoBackToPaymentMethod_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                lblInfoMsg.Text = "Supply User Details Below";
+                multiViewContent.SetActiveView(viewPaymentMethodChoice);
             }
             catch (Exception ex)
             {

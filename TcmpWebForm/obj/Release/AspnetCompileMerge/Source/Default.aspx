@@ -4,7 +4,7 @@
 <html>
 
 <head>
-    <title>TCMP Shopping Site</title>
+    <title>TMCG Shopping Site</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -18,7 +18,7 @@
             <div class="row">
 
                 <div class="gallery col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
-                    <h1 class="standOut-Heading">TCMP Shopping Site</h1>
+                    <h1 class="standOut-Heading">TMCG Shopping Site</h1>
                     <hr />
                 </div>
 
@@ -55,8 +55,10 @@
                             <a href="Default.aspx?ItemID=<% Response.Write(item.ItemCode); %>&Op=Add">
                                 <img src="<% Response.Write(item.ItemImage); %>" style="height:300px;width:365px;" class="img-thumbnail img-rounded img-responsive" />
                             </a>
-                            <label>Name: <% Response.Write(item.ItemName); %></label>,
-                            <label>Price: <% Response.Write(item.ItemPrice); %></label>
+                            <br />
+                            <label>Name: <% Response.Write(item.ItemName); %></label><br />
+                            <label>Price: <% Response.Write(item.ItemPrice); %> UGX</label><br />
+                            <label>Number Left: <% Response.Write(item.ItemCount); %></label>
                         </div>
 
                         <% } %>
@@ -216,7 +218,7 @@
                                             </tr>
                                             <tr>
                                                 <th scope="row">Account Names</th>
-                                                <td>TCMG Online Web Shop</td>
+                                                <td>TMCG Online Web Shop</td>
                                             </tr>
                                             <tr>
                                                 <th scope="row">Account Number</th>
@@ -232,6 +234,9 @@
                                             </tr>
                                         </tbody>
                                     </table>
+                                </div>
+                                <div class="row text-center">
+                                    <asp:Button runat="server" Text="Go Back" ID="btnGoBackToPaymentMethod" CssClass="btn btn-primary" OnClick="btnGoBackToPaymentMethod_Click" />
                                 </div>
                             </div>
                             <div class="col-lg-3">
